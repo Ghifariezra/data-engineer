@@ -80,7 +80,8 @@ ddl_statements = {
     "dim_product_category": """
         CREATE TABLE IF NOT EXISTS dim_product_category (
             product_category_id INT NOT NULL PRIMARY KEY,
-            product_category_name VARCHAR(255) NOT NULL
+            product_category_name VARCHAR(255) NOT NULL,
+            FOREIGN KEY (product_category_id) REFERENCES dim_products(product_category_id)
         );
     """,    
     "dim_products": """
@@ -91,7 +92,8 @@ ddl_statements = {
             product_created DATE NOT NULL,
             product_price INT NOT NULL,
             product_discount INT,
-            FOREIGN KEY (product_category_id) REFERENCES dim_product_category(product_category_id)
+            FOREIGN KEY (product_category_id) REFERENCES dim_product_category(product_category_id),
+            FOREIGN KEY (product_id) REFERENCES fact_order_items(product_id)
         );
     """,
     "fact_orders": """
