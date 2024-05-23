@@ -1,0 +1,6 @@
+pandas
+python-dotenv
+SQLAlchemy
+sqlalchemy[asyncio]
+asyncpg
+py
