@@ -93,7 +93,7 @@ ddl_statements = {
             product_price INT NOT NULL,
             product_discount INT,
             FOREIGN KEY (product_category_id) REFERENCES dim_product_category(product_category_id),
-            FOREIGN KEY (product_id) REFERENCES fact_order_items(product_id)
+            FOREIGN KEY (product_id) REFERENCES fact_order_items(product_id) 
         );
     """,
     "fact_orders": """
