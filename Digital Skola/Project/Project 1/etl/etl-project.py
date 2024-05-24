@@ -3,7 +3,6 @@ from config.config import oltp_tables, warehouse_tables, dimension_columns, \
 from sqlalchemy import create_engine, text
 from sqlalchemy.exc import IntegrityError
 from dotenv import load_dotenv
-import asyncio
 import pandas as pd
 import os
 
