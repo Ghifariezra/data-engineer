@@ -1,5 +1,5 @@
 from config.config import oltp_tables, warehouse_tables, dimension_columns, \
-                          ddl_statements, ddl_marts
+                          ddl_statements, ddl_marts, populate_data_marts
 from sqlalchemy import create_engine, text
 from sqlalchemy.exc import IntegrityError
 from dotenv import load_dotenv
@@ -84,6 +84,27 @@ def load_data(*connections, df):
         except IntegrityError:
             print('Data Already Exists...\nDuplicate Data Ignored...')
 
+def create_data_mart(*connections, **data_connections):
+    """ Create DDL Statements for DWH"""
+    engine_dwh = create_engine(url=connections[0])
+
+    with engine_dwh.connect() as conn:
+
+        # Membuat DDL Statements berdasarkan dictionary yang berasal dari file config.
+        for key, val in data_connections.get('ddl').items():
+            conn.execute(
+                text(val)
+            ) # Create table data mart
+
+            conn.execute(
+                text(
+                    data_connections.get('insert_data').get(key)
+                )
+            ) # Insert data to data mart
+            
+            conn.commit()
+            print(f'Create {key} Success...')
+
 def etl_process():
     # Required Connection
     USER = os.environ.get('USER')
@@ -93,11 +114,9 @@ def etl_process():
     OLTP = os.environ.get('OLTP')
 
     # Connections
-    DWH_CONNECTION = f'postgresql://{USER}:{PASSWORD}@{HOST}/{DWH}?sslmode=require'
-    OLTP_CONNECTION = f'postgresql://{USER}:{PASSWORD}@{HOST}/{OLTP}?sslmode=require'
     CONNECTIONS = [
-        DWH_CONNECTION,
-        OLTP_CONNECTION
+        f'postgresql://{USER}:{PASSWORD}@{HOST}/{DWH}?sslmode=require',
+        f'postgresql://{USER}:{PASSWORD}@{HOST}/{OLTP}?sslmode=require'
     ]
 
     # Process
@@ -118,6 +137,12 @@ def etl_process():
     load_dwh = load_data(
         *CONNECTIONS,
         df=transform_oltp
+    )
+
+    create_dm = create_data_mart(
+        *CONNECTIONS,
+        ddl=ddl_marts,
+        insert_data=populate_data_marts
     )
 
 if __name__ == '__main__':

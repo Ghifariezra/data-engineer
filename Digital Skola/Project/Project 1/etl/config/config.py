@@ -131,34 +131,182 @@ ddl_statements = {
     """        
 }
 
+
 ddl_marts = {
-    "dim_sales": """
-        CREATE TABLE IF NOT EXISTS dm_sales (
-            order_id INT NOT NULL PRIMARY KEY,
-            order_date DATE NOT NULL,
-            user_id INT NOT NULL,
-            user_name VARCHAR(255),
-            payment_type VARCHAR(255),
-            shipper_name VARCHAR(255),
-            order_price INT NOT NULL,
-            order_discount INT,
-            voucher_name VARCHAR(255),
-            order_total INT NOT NULL,
-            FOREIGN KEY (order_id) REFERENCES fact_orders(order_id),
-            FOREIGN KEY (user_id) REFERENCES dim_user(user_id)
+    "total_sales_monthly": """
+        CREATE TABLE IF NOT EXISTS sales.total_sales_monthly (
+            year_month TEXT,
+            total_sales NUMERIC
         );
     """,
-    "insert_dm_sales": """
-        TRUNCATE TABLE dm_sales; 
-        INSERT INTO dm_sales (order_id, order_date, user_id, user_name, payment_type, shipper_name, 
-                              order_price, order_discount, voucher_name, order_total)
-        SELECT fo.order_id, fo.order_date, fo.user_id, du.user_first_name || ' ' || du.user_last_name, 
-               dp.payment_name, ds.shipper_name, fo.order_price, fo.order_discount, 
-               dv.voucher_name, fo.order_total
-        FROM fact_orders fo
-        INNER JOIN dim_user du ON fo.user_id = du.user_id
-        INNER JOIN dim_payment dp ON fo.payment_id = dp.payment_id
-        INNER JOIN dim_shipper ds ON fo.shipper_id = ds.shipper_id
-        INNER JOIN dim_voucher dv ON fo.voucher_id = dv.voucher_id;
+    "sales_per_category": """
+        CREATE TABLE IF NOT EXISTS sales.sales_per_category (
+            product_category_name VARCHAR(255),
+            total_sales NUMERIC
+        );
+    """,
+    "sales_payment_method": """
+        CREATE TABLE IF NOT EXISTS sales.sales_payment_method (
+            payment_name VARCHAR(255),
+            total_sales NUMERIC
+        );
+    """,
+    "sales_per_sender": """
+        CREATE TABLE IF NOT EXISTS sales.sales_per_sender (
+            shipper_name VARCHAR(255),
+            total_sales NUMERIC
+        );
+    """,
+    "sales_per_user": """
+        CREATE TABLE IF NOT EXISTS sales.sales_per_user (
+            user_name TEXT,
+            total_sales NUMERIC
+        );
+    """,
+    "discount_voucher": """
+        CREATE TABLE IF NOT EXISTS sales.discount_voucher (
+            year_month TEXT,
+            average_discount NUMERIC,
+            total_vouchers INT
+        );
+    """,
+    "sales_per_region": """
+        CREATE TABLE IF NOT EXISTS sales.sales_per_region (
+            region TEXT,
+            total_sales NUMERIC
+        );
+    """,
+    "profit_per_category": """
+        CREATE TABLE IF NOT EXISTS sales.profit_per_category (
+            product_category_name VARCHAR(255),
+            total_laba NUMERIC
+        );
+    """,
+    "average_order_user": """
+        CREATE TABLE IF NOT EXISTS sales.average_order_user (
+            user_id INT,
+            user_name TEXT,
+            average_order_value NUMERIC
+        );
+    """,
+    "conversion_rate_voucher":"""
+        CREATE TABLE IF NOT EXISTS sales.conversion_rate_voucher (
+            total_orders INT,
+            total_orders_with_voucher INT,
+            conversion_rate NUMERIC
+        );
+    """
+}
+
+populate_data_marts = {
+    "total_sales_monthly": """
+        TRUNCATE TABLE sales.total_sales_monthly;
+        INSERT INTO sales.total_sales_monthly (year_month, total_sales)
+        SELECT
+            TO_CHAR(order_date, 'YYYY-MM') AS year_month,
+            SUM(order_total) AS total_sales
+        FROM fact_orders
+        GROUP BY TO_CHAR(order_date, 'YYYY-MM')
+        ORDER BY year_month;
+    """,
+    "sales_per_category": """
+        TRUNCATE TABLE sales.sales_per_category;
+        INSERT INTO sales.sales_per_category (product_category_name, total_sales)
+        SELECT
+            c.product_category_name,
+            SUM(oi.product_subprice) AS total_sales
+        FROM fact_order_items oi
+        JOIN dim_products p ON oi.product_id = p.product_id
+        JOIN dim_product_category c ON p.product_category_id = c.product_category_id
+        GROUP BY c.product_category_name
+        ORDER BY total_sales DESC;
+    """,
+    "sales_payment_method": """
+        TRUNCATE TABLE sales.sales_payment_method;
+        INSERT INTO sales.sales_payment_method (payment_name, total_sales)
+        SELECT
+            p.payment_name,
+            SUM(o.order_total) AS total_sales
+        FROM fact_orders o
+        JOIN dim_payment p ON o.payment_id = p.payment_id
+        GROUP BY p.payment_name
+        ORDER BY total_sales DESC;
+    """,
+    "sales_per_sender": """
+        TRUNCATE TABLE sales.sales_per_sender;
+        INSERT INTO sales.sales_per_sender (shipper_name, total_sales)
+        SELECT
+            s.shipper_name,
+            SUM(o.order_total) AS total_sales
+        FROM fact_orders o
+        JOIN dim_shipper s ON o.shipper_id = s.shipper_id
+        GROUP BY s.shipper_name
+        ORDER BY total_sales DESC;
+    """,
+    "sales_per_user": """
+        TRUNCATE TABLE sales.sales_per_user;
+        INSERT INTO sales.sales_per_user (user_name, total_sales)
+        SELECT
+            CONCAT(u.user_first_name, ' ', u.user_last_name) AS user_name,
+            SUM(o.order_total) AS total_sales
+        FROM fact_orders o
+        JOIN dim_user u ON o.user_id = u.user_id
+        GROUP BY user_name
+        ORDER BY total_sales DESC;
+    """,
+    "discount_voucher": """
+        TRUNCATE TABLE sales.discount_voucher;
+        INSERT INTO sales.discount_voucher (year_month, average_discount, total_vouchers)
+        SELECT
+            TO_CHAR(order_date, 'YYYY-MM') AS year_month,
+            AVG(order_discount) AS average_discount,
+            COUNT(DISTINCT voucher_id) AS total_vouchers
+        FROM fact_orders
+        GROUP BY year_month
+        ORDER BY year_month;
+    """,
+    "sales_per_region": """
+        TRUNCATE TABLE sales.sales_per_region;
+        INSERT INTO sales.sales_per_region (region, total_sales)
+        SELECT
+            u.user_address AS region,
+            SUM(o.order_total) AS total_sales
+        FROM fact_orders o
+        JOIN dim_user u ON o.user_id = u.user_id
+        GROUP BY region
+        ORDER BY total_sales DESC;
+    """,
+    "profit_per_category": """
+        TRUNCATE TABLE sales.profit_per_category;
+        INSERT INTO sales.profit_per_category (product_category_name, total_laba)
+        SELECT
+            c.product_category_name,
+            SUM((oi.product_price - COALESCE(oi.product_discount, 0)) * oi.order_item_quantity) AS total_laba
+        FROM fact_order_items oi
+        JOIN dim_products p ON oi.product_id = p.product_id
+        JOIN dim_product_category c ON p.product_category_id = c.product_category_id
+        GROUP BY c.product_category_name
+        ORDER BY total_laba DESC;
+    """,
+    "average_order_user": """
+        TRUNCATE TABLE sales.average_order_user;
+        INSERT INTO sales.average_order_user (user_id, user_name, average_order_value)
+        SELECT
+            u.user_id,
+            CONCAT(u.user_first_name, ' ', u.user_last_name) AS user_name,
+            AVG(o.order_total) AS average_order_value
+        FROM fact_orders o
+        JOIN dim_user u ON o.user_id = u.user_id
+        GROUP BY u.user_id, user_name
+        ORDER BY average_order_value DESC;
+    """,
+    "conversion_rate_voucher":"""
+        TRUNCATE TABLE sales.conversion_rate_voucher;
+        INSERT INTO sales.conversion_rate_voucher (total_orders, total_orders_with_voucher, conversion_rate)
+        SELECT
+            COUNT(DISTINCT o.order_id) AS total_orders,
+            COUNT(DISTINCT o.voucher_id) AS total_orders_with_voucher,
+            COUNT(DISTINCT o.voucher_id) / COUNT(DISTINCT o.order_id) AS conversion_rate
+        FROM fact_orders o;
     """
 }
