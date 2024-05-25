@@ -128,9 +128,8 @@ ddl_statements = {
             FOREIGN KEY (order_id) REFERENCES fact_orders(order_id),
             FOREIGN KEY (product_id) REFERENCES dim_products(product_id)
         );
-    """        
+    """
 }
-
 
 ddl_marts = {
     "total_sales_monthly": """

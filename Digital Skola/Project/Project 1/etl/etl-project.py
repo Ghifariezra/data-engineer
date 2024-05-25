@@ -13,8 +13,7 @@ def create_tabels_DWH(*connections, **data_connections):
     engine_dwh = create_engine(url=connections[0])
 
     with engine_dwh.connect() as conn:
-
-        # Membuat DDL Statements berdasarkan dictionary yang berasal dari file config.
+        # Create table data warehouse
         for key, val in data_connections.get('ddl').items():
             conn.execute(
                 text(val)
@@ -29,8 +28,7 @@ def extract_data(*connections, **data_connections):
     df_oltp = {}
 
     with engine_oltp.connect() as conn:
-
-        # Extract semua data yang berada di dalam OLTP berdasarkan dictionary yang berasal dari file config.
+        # Extract all data from OLTP
         for key, val in data_connections.get('oltp_tables').items():
             query = f"SELECT * FROM {val}"
             df_oltp[key] = pd.read_sql(query, conn)
@@ -42,14 +40,16 @@ def transform_data(data_oltp: dict):
     """Transform data OLTP"""
     df_transform = {}
 
-    # Transform data berdasarkan dictionary yang berasal dari file config.
     for key, val in data_oltp.items():
         if warehouse_tables.get(key):
             columns = dimension_columns.get(
                 warehouse_tables.get(key)
-            )
+            )# Get columns from warehouse
+            
+            # Drop duplicate data & Append to df_transform
             dedup = data_oltp[key].drop_duplicates()
             df_transform[key] = dedup[columns]
+
             print(f'Transform Data {key} Success...\n')
         else:
             raise ValueError(f'Table {key} not found in warehouse_tables')
@@ -61,15 +61,18 @@ def load_data(*connections, df):
     engine_dwh = create_engine(url=connections[0])
     with engine_dwh.connect() as conn:
         try:
-            # Memasukkan data ke dalam warehouse 
+            # Insert into data warehouse
             for key, val in warehouse_tables.items():
                 df_dwh = pd.read_sql(f"SELECT * FROM {val}", conn)
                 if df_dwh.columns[0] == df[key].columns[0]:
+
+                    # Merge data beetween warehouse and new data
                     new_df = pd.concat(
                         [df_dwh, df[key]],
                         names=df[key].columns.tolist()
                     ).drop_duplicates()
 
+                    # Load data based on new data
                     new_df.to_sql(
                         val,
                         engine_dwh, 
@@ -84,12 +87,10 @@ def load_data(*connections, df):
             print('Data Already Exists...\nDuplicate Data Ignored...')
 
 def create_data_mart(*connections, **data_connections):
-    """ Create DDL Statements for DWH"""
+    """ Create DDL Statements & Insert Data for Data Mart"""
     engine_dwh = create_engine(url=connections[0])
 
     with engine_dwh.connect() as conn:
-
-        # Membuat DDL Statements berdasarkan dictionary yang berasal dari file config.
         for key, val in data_connections.get('ddl').items():
             conn.execute(
                 text(val)
