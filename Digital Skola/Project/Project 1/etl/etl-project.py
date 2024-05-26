@@ -50,7 +50,7 @@ def transform_data(data_oltp: dict):
             dedup = data_oltp[key].drop_duplicates()
             df_transform[key] = dedup[columns]
 
-            print(f'Transform Data {key} Success...\n')
+            print(f'Transform Data {key} Success...')
         else:
             raise ValueError(f'Table {key} not found in warehouse_tables')
 
