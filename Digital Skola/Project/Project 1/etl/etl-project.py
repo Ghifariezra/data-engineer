@@ -7,7 +7,7 @@ import pandas as pd
 import os
 
 load_dotenv()
-
+ 
 def create_tabels_DWH(*connections, **data_connections):
     """ Create DDL Statements for DWH"""
     engine_dwh = create_engine(url=connections[0])

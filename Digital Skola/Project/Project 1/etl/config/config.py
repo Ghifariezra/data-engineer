@@ -1,4 +1,4 @@
-#!python config
+#!python config 
 
 oltp_tables = {
     "users": "tb_users",
