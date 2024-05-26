@@ -133,63 +133,62 @@ ddl_statements = {
 
 ddl_marts = {
     "total_sales_monthly": """
-        CREATE TABLE IF NOT EXISTS sales.total_sales_monthly (
+        CREATE TABLE IF NOT EXISTS dm_total_sales_monthly (
             year_month TEXT,
             total_sales NUMERIC
         );
     """,
     "sales_per_category": """
-        CREATE TABLE IF NOT EXISTS sales.sales_per_category (
+        CREATE TABLE IF NOT EXISTS dm_sales_per_category (
             product_category_name VARCHAR(255),
             total_sales NUMERIC
         );
     """,
     "sales_payment_method": """
-        CREATE TABLE IF NOT EXISTS sales.sales_payment_method (
+        CREATE TABLE IF NOT EXISTS dm_sales_payment_method (
             payment_name VARCHAR(255),
             total_sales NUMERIC
         );
     """,
     "sales_per_sender": """
-        CREATE TABLE IF NOT EXISTS sales.sales_per_sender (
+        CREATE TABLE IF NOT EXISTS dm_sales_per_sender (
             shipper_name VARCHAR(255),
             total_sales NUMERIC
         );
     """,
     "sales_per_user": """
-        CREATE TABLE IF NOT EXISTS sales.sales_per_user (
+        CREATE TABLE IF NOT EXISTS dm_sales_per_user (
             user_name TEXT,
             total_sales NUMERIC
         );
     """,
     "discount_voucher": """
-        CREATE TABLE IF NOT EXISTS sales.discount_voucher (
-            year_month TEXT,
-            average_discount NUMERIC,
-            total_vouchers INT
+        CREATE TABLE dm_discount_voucher (
+            voucher_name VARCHAR(255),
+            use_voucher INT
         );
     """,
     "sales_per_region": """
-        CREATE TABLE IF NOT EXISTS sales.sales_per_region (
+        CREATE TABLE IF NOT EXISTS dm_sales_per_region (
             region TEXT,
             total_sales NUMERIC
         );
     """,
     "profit_per_category": """
-        CREATE TABLE IF NOT EXISTS sales.profit_per_category (
+        CREATE TABLE IF NOT EXISTS dm_profit_per_category (
             product_category_name VARCHAR(255),
             total_laba NUMERIC
         );
     """,
     "average_order_user": """
-        CREATE TABLE IF NOT EXISTS sales.average_order_user (
+        CREATE TABLE IF NOT EXISTS dm_average_order_user (
             user_id INT,
             user_name TEXT,
             average_order_value NUMERIC
         );
     """,
     "conversion_rate_voucher":"""
-        CREATE TABLE IF NOT EXISTS sales.conversion_rate_voucher (
+        CREATE TABLE IF NOT EXISTS dm_conversion_rate_voucher (
             total_orders INT,
             total_orders_with_voucher INT,
             conversion_rate NUMERIC
@@ -199,8 +198,8 @@ ddl_marts = {
 
 populate_data_marts = {
     "total_sales_monthly": """
-        TRUNCATE TABLE sales.total_sales_monthly;
-        INSERT INTO sales.total_sales_monthly (year_month, total_sales)
+        TRUNCATE TABLE dm_total_sales_monthly;
+        INSERT INTO dm_total_sales_monthly (year_month, total_sales)
         SELECT
             TO_CHAR(order_date, 'YYYY-MM') AS year_month,
             SUM(order_total) AS total_sales
@@ -209,8 +208,8 @@ populate_data_marts = {
         ORDER BY year_month;
     """,
     "sales_per_category": """
-        TRUNCATE TABLE sales.sales_per_category;
-        INSERT INTO sales.sales_per_category (product_category_name, total_sales)
+        TRUNCATE TABLE dm_sales_per_category;
+        INSERT INTO dm_sales_per_category (product_category_name, total_sales)
         SELECT
             c.product_category_name,
             SUM(oi.product_subprice) AS total_sales
@@ -221,8 +220,8 @@ populate_data_marts = {
         ORDER BY total_sales DESC;
     """,
     "sales_payment_method": """
-        TRUNCATE TABLE sales.sales_payment_method;
-        INSERT INTO sales.sales_payment_method (payment_name, total_sales)
+        TRUNCATE TABLE dm_sales_payment_method;
+        INSERT INTO dm_sales_payment_method (payment_name, total_sales)
         SELECT
             p.payment_name,
             SUM(o.order_total) AS total_sales
@@ -232,8 +231,8 @@ populate_data_marts = {
         ORDER BY total_sales DESC;
     """,
     "sales_per_sender": """
-        TRUNCATE TABLE sales.sales_per_sender;
-        INSERT INTO sales.sales_per_sender (shipper_name, total_sales)
+        TRUNCATE TABLE dm_sales_per_sender;
+        INSERT INTO dm_sales_per_sender (shipper_name, total_sales)
         SELECT
             s.shipper_name,
             SUM(o.order_total) AS total_sales
@@ -243,8 +242,8 @@ populate_data_marts = {
         ORDER BY total_sales DESC;
     """,
     "sales_per_user": """
-        TRUNCATE TABLE sales.sales_per_user;
-        INSERT INTO sales.sales_per_user (user_name, total_sales)
+        TRUNCATE TABLE dm_sales_per_user;
+        INSERT INTO dm_sales_per_user (user_name, total_sales)
         SELECT
             CONCAT(u.user_first_name, ' ', u.user_last_name) AS user_name,
             SUM(o.order_total) AS total_sales
@@ -254,19 +253,18 @@ populate_data_marts = {
         ORDER BY total_sales DESC;
     """,
     "discount_voucher": """
-        TRUNCATE TABLE sales.discount_voucher;
-        INSERT INTO sales.discount_voucher (year_month, average_discount, total_vouchers)
-        SELECT
-            TO_CHAR(order_date, 'YYYY-MM') AS year_month,
-            AVG(order_discount) AS average_discount,
-            COUNT(DISTINCT voucher_id) AS total_vouchers
-        FROM fact_orders
-        GROUP BY year_month
-        ORDER BY year_month;
+        TRUNCATE TABLE dm_discount_voucher;
+        INSERT INTO dm_discount_voucher (voucher_name, use_voucher)
+        SELECT 
+            voucher_name, 
+            COUNT(voucher_id) AS use_voucher
+        FROM  dim_voucher 
+        GROUP BY voucher_name
+        ORDER BY use_voucher ;
     """,
     "sales_per_region": """
-        TRUNCATE TABLE sales.sales_per_region;
-        INSERT INTO sales.sales_per_region (region, total_sales)
+        TRUNCATE TABLE dm_sales_per_region;
+        INSERT INTO dm_sales_per_region (region, total_sales)
         SELECT
             u.user_address AS region,
             SUM(o.order_total) AS total_sales
@@ -276,8 +274,8 @@ populate_data_marts = {
         ORDER BY total_sales DESC;
     """,
     "profit_per_category": """
-        TRUNCATE TABLE sales.profit_per_category;
-        INSERT INTO sales.profit_per_category (product_category_name, total_laba)
+        TRUNCATE TABLE dm_profit_per_category;
+        INSERT INTO dm_profit_per_category (product_category_name, total_laba)
         SELECT
             c.product_category_name,
             SUM((oi.product_price - COALESCE(oi.product_discount, 0)) * oi.order_item_quantity) AS total_laba
@@ -288,8 +286,8 @@ populate_data_marts = {
         ORDER BY total_laba DESC;
     """,
     "average_order_user": """
-        TRUNCATE TABLE sales.average_order_user;
-        INSERT INTO sales.average_order_user (user_id, user_name, average_order_value)
+        TRUNCATE TABLE dm_average_order_user;
+        INSERT INTO dm_average_order_user (user_id, user_name, average_order_value)
         SELECT
             u.user_id,
             CONCAT(u.user_first_name, ' ', u.user_last_name) AS user_name,
@@ -300,8 +298,8 @@ populate_data_marts = {
         ORDER BY average_order_value DESC;
     """,
     "conversion_rate_voucher":"""
-        TRUNCATE TABLE sales.conversion_rate_voucher;
-        INSERT INTO sales.conversion_rate_voucher (total_orders, total_orders_with_voucher, conversion_rate)
+        TRUNCATE TABLE dm_conversion_rate_voucher;
+        INSERT INTO dm_conversion_rate_voucher (total_orders, total_orders_with_voucher, conversion_rate)
         SELECT
             COUNT(DISTINCT o.order_id) AS total_orders,
             COUNT(DISTINCT o.voucher_id) AS total_orders_with_voucher,
