@@ -163,7 +163,7 @@ ddl_marts = {
         );
     """,
     "discount_voucher": """
-        CREATE TABLE dm_discount_voucher (
+        CREATE TABLE IF NOT EXISTS dm_discount_voucher (
             voucher_name VARCHAR(255),
             use_voucher INT
         );
