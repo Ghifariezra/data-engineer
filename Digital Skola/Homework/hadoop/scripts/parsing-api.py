@@ -125,6 +125,7 @@ async def partition_data(df: pd.DataFrame) -> list:
     return result
 
 async def write_csv(chunks: list) -> None:
+    # Write csv by chunks
     for df in chunks:
         filename = f'result_{df.index[0] + 1}_{df.index[-1] + 1}.csv'
         dir_file = f'./scripts/data/result_{df.index[0] + 1}_{df.index[-1] + 1}.csv'

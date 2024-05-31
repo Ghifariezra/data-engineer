@@ -17,8 +17,6 @@ pip install -r scripts/requirements/modules.txt
 
 3. And finally, you can run `python parsing-api.py` on PowerShell or Linux
 
-
-
 # How to Save data with format .csv into hdfs on Hadoop Container?
 1. First, you can build and run a hadoop container
 ```
