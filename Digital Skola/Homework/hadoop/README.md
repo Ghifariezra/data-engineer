@@ -8,7 +8,7 @@ docker-compose -f docker-hadoop/docker-compose-hadoop.yml up -d
 ```
 docker exec docker-hadoop-namenode-1 \
 bash -c \
-hadoop fs -mkdir /data-poke
+"hadoop fs -mkdir /data-poke"
 ```
 
 3. And last, you can paste all data that from local system `/scripts/data/*` to hdfs
@@ -29,5 +29,5 @@ bash -c \
 ```
 docker exec docker-hadoop-namenode-1 \
 bash -c \
-" hadoop fs -rm -f -r /data-poke"
+"hadoop fs -rm -f -r /data-poke"
 ```
