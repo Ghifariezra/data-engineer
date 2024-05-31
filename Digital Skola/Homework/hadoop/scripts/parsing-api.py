@@ -116,7 +116,7 @@ async def partition_data(df: pd.DataFrame) -> list:
 async def write_csv(chunks: list) -> None:
     for df in chunks:
         filename = f'result_{df.index[0] + 1}_{df.index[-1] + 1}.csv'
-        dir_file = f'./scripts/data/result_{df.index[0]}_{df.index[-1]}.csv'
+        dir_file = f'./scripts/data/result_{df.index[0] + 1}_{df.index[-1] + 1}.csv'
 
         mode = 'a' if os.path.exists(filename) else 'w'
         df.to_csv(dir_file, mode=mode, index=False)
