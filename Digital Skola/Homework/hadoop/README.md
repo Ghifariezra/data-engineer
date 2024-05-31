@@ -15,7 +15,7 @@ bash -c \
 ```
 docker exec docker-hadoop-namenode-1 \
 bash -c \
-"hadoop fs -put /scripts/data/* /data-poke"
+"hadoop fs -put /scripts/data/*.csv /data-poke"
 ```
 
 4. And you can check data in hdfs
