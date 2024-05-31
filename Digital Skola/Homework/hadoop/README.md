@@ -30,7 +30,7 @@ bash -c \
 "hadoop fs -mkdir /data-poke"
 ```
 
-3. And last, you can paste all data that from local system `/scripts/data/*` to hdfs
+3. And last, you can paste all data that from local system `/scripts/data/*.csv` to hdfs
 ```
 docker exec docker-hadoop-namenode-1 \
 bash -c \
