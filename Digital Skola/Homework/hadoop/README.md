@@ -1,4 +1,23 @@
 # How is work ?
+1. First, you can `venv` for hint API then install requirements
+```
+# for Windows
+python3 -m venv venv
+# or
+python -m venv venv
+
+# for Linux
+source venv/bin/activate
+```
+
+2. Then, you can install requirements
+```
+pip install -r scripts/requirements/modules.txt
+```
+
+3. And finally, you can run `python main.py` on PowerShell or Linux
+
+# How to Save data with format .csv into hdfs on Hadoop Container?
 1. First, you can build and run a hadoop container
 ```
 docker-compose -f docker-hadoop/docker-compose-hadoop.yml up -d

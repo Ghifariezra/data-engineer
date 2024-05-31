@@ -5,6 +5,7 @@ import pandas as pd
 import os
 
 async def fetch_data(data: dict, index: int):
+    # Filter data
     effect = data['effect_entries'][0]['effect']
     language = data['effect_entries'][0]['language']
     short_effect = data['effect_entries'][0]['short_effect']
@@ -20,7 +21,6 @@ async def fetch_data(data: dict, index: int):
 
 
 async def handle_index(data: dict, index: int):
-    # Buckets for data
     id = [index]
     pokemon_ability_id = [index]
     effect = [None]
@@ -31,7 +31,6 @@ async def handle_index(data: dict, index: int):
         language, short_effect
 
 async def handle_status(index: int):
-    # Buckets for data
     id = [index]
     pokemon_ability_id = [index]
     effect = [None]
@@ -49,9 +48,11 @@ async def fetch(session: aiohttp.ClientSession, URL: str, id: int) -> dict:
             try:
                 data = await response.json()
 
+                # Filter data
                 id, pokemon_ability_id, effect, \
                     language, short_effect = await fetch_data(data, id)
 
+                # Append data
                 frame['id'] = id
                 frame['pokemon_ability_id'] = pokemon_ability_id
                 frame['effect'] = effect
@@ -59,9 +60,11 @@ async def fetch(session: aiohttp.ClientSession, URL: str, id: int) -> dict:
                 frame['short_effect'] = short_effect
 
             except IndexError:
+                # Filter data
                 id, pokemon_ability_id, effect, \
                     language, short_effect = await handle_index(data, id)
 
+                # Append data
                 frame['id'] = id
                 frame['pokemon_ability_id'] = pokemon_ability_id
                 frame['effect'] = effect
@@ -69,8 +72,11 @@ async def fetch(session: aiohttp.ClientSession, URL: str, id: int) -> dict:
                 frame['short_effect'] = short_effect
                 
         else:
+            # Filter data
             id, pokemon_ability_id, effect, \
                 language, short_effect = await handle_status(id)
+            
+            # Append data
             frame['id'] = id
             frame['pokemon_ability_id'] = pokemon_ability_id
             frame['effect'] = effect
@@ -86,6 +92,7 @@ async def merge_data(result: list) -> dict:
     language = []
     short_effect = []
 
+    # Loop for make multi-dimensional list
     for dt in result:
         id.append(dt['id'])
         pokemon_ability_id.append(dt['pokemon_ability_id'])
@@ -93,6 +100,10 @@ async def merge_data(result: list) -> dict:
         language.append(dt['language'])
         short_effect.append(dt['short_effect'])
 
+    """
+        chain.from_iterable => Marge multi-dimensional list,
+        like [[1, 2, 3], [4, 5, 6], [7, 8, 9]] => [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    """
     return {
         'id': list(chain.from_iterable(id)),
         'pokemon_ability_id': list(chain.from_iterable(pokemon_ability_id)),
