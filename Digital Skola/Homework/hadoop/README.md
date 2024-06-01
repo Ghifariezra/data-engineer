@@ -6,7 +6,9 @@ python3 -m venv venv
 # or
 python -m venv venv
 
-# for Linux
+# activate venv for windows
+.\venv\Scripts\activate
+# activate venv for Linux
 source venv/bin/activate
 ```
 
