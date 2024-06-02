@@ -5,7 +5,7 @@ from sqlalchemy.exc import IntegrityError
 from dotenv import load_dotenv
 import pandas as pd
 import os
- 
+
 load_dotenv()
 
 def create_tabels_DWH(*connections, **data_connections):
