@@ -1,0 +1,67 @@
+version: 2
+
+sources:
+  - name: raw_customers
+  - name: raw_orders
+  - name: raw_payments
+  - name: raw_products
+
+models:
+  - name: raw_customers
+    description: "Staging model for raw_customers"
+    tests:
+      - not_null:
+          - customer_id
+          - customer_name
+
+  - name: raw_orders
+    description: "Staging model for raw_orders"
+    tests:
+      - not_null:
+          - order_id
+          - order_date
+
+  - name: raw_payments
+    description: "Staging model for raw_payments"
+    tests:
+      - not_null:
+          - payment_id
+          - order_id
+
+  - name: raw_products
+    description: "Staging model for raw_products"
+    tests:
+      - not_null:
+          - product_id
+          - product_name
+
+  - name: orders_detail
+    description: "Intermediate model for order data, joining raw_orders, raw_customers, raw_products, and raw_payments"
+    columns:
+      - name: order_id
+        description: "Unique identifier for each order"
+      - name: order_date
+        description: "Date the order was placed"
+      - name: customer_name
+        description: "Name of the customer who placed the order"
+      - name: customer_email
+        description: "Email of the customer who placed the order"
+      - name: product_name
+        description: "Name of the product ordered"
+      - name: category
+        description: "Category of the product ordered"
+      - name: order_amount
+        description: "Total amount of the order"
+      - name: payment_amount
+        description: "Amount paid for the order"
+      - name: payment_method
+        description: "Payment method used for the order"
+    tests:
+      - unique:
+          - order_id
+      - not_null:
+          - order_id
+          - order_date
+          - customer_name
+          - order_amount
+          - payment_amount

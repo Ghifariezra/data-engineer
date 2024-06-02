@@ -1,0 +1,10 @@
+FROM postgres:latest
+
+ENV POSTGRES_USER=data-ninja
+ENV POSTGRES_PASSWORD=12345678
+ENV POSTGRES_DB=datawarehouse_dbt
+
+# if you want to check the result on local
+EXPOSE 5432
+
+COPY ./init_db/init.sql /docker-entrypoint-initdb.d/

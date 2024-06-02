@@ -1,0 +1,16 @@
+learn-dbt/
+|    dbt_dskola_project/
+|    ├── models/
+|    │   ├── staging/
+|    │   │   ├── raw_customers.sql
+|    │   │   ├── raw_orders.sql
+|    │   │   ├── raw_payments.sql
+|    │   │   ├── raw_products.sql
+|    │   ├── warehouse/
+|    │   │   └── orders_detail.sql
+|    │   └── marts/
+|    │       └── soon_to_be.sql
+|    │   └── sources.yml
+|    └── schema.yml
+|    └── dbt_project.yml
+|___ profile.yml
