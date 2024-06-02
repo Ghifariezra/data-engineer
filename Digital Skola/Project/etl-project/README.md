@@ -1,6 +1,6 @@
 # About this Project
 
-Perform data extraction from **OLTP** then we move the data from OLTP to **Datawarehouse** and then connect Datawarehouse to **Looker** to create **Dashboards**.
+Perform data extraction from `OLTP` then we move the data from OLTP to `Datawarehouse` and then connect Datawarehouse to `Looker` to create `Dashboards`.
 
 ![Group 4 Project](architecture/Group%204.png)
 
@@ -14,3 +14,5 @@ HOST = os.environ.get('HOST')
 DWH = os.environ.get('DWH')
 OLTP = os.environ.get('OLTP')
 ```
+## You can modify this project in the file `config.py`
+You can see the file in [config.py](https://github.com/Ghifariezra/data-engineer/blob/f052e6a6e14ac1b9165b926c904611f9db8c73cd/Digital%20Skola/Project/etl-project/etl/config/config.py)
