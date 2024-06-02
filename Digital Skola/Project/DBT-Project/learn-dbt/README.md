@@ -1,8 +1,8 @@
 # learn_dbt
-**Source from [Here](https://gitlab.com/farhansmg/learn_dbt.git).** 
+Source from: [Here](https://gitlab.com/farhansmg/learn_dbt.git).
 
 ## How to run it?
-### Pre-requisites
+**Pre-requisites**
 create a `virtual env` of python first :
 ```bash
 # create the environment
@@ -21,7 +21,7 @@ sudo pip install --upgrade cffi
 pip install cryptography~=3.4
 ```
 
-### No.1 You must build the docker image and run the container
+**You must build the docker image and run the container**
 1. build the postgres image
 ```bash
 docker build -t {postgres_image_name} -f Dockerfile.postgres .
@@ -32,7 +32,7 @@ if you want to check the result on local (uncomment first the EXPOSE command on 
 docker run -d -p 5432:5432 --name {postgres_container_name} {postgres_image_name}
 ```
 
-### No.2 Before you run DBT, you must install Adapter.
+**Before you run DBT, you must install Adapter.**
 1. install dbt
 ```bash
 python -m pip install dbt-core dbt-postgres
