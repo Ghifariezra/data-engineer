@@ -13,7 +13,7 @@ python -m venv <venv-name>
 source <name-venv>/bin/activate # for Linux or Mac
 ```
 
-if you can run on Linux, you should doing installation :
+**if you can run on Linux, you should doing installation :**
 ```bash
 sudo apt-get install git libpq-dev python-dev python3-pip
 sudo apt-get remove python-cffi
