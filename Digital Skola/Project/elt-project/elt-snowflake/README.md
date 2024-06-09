@@ -36,20 +36,20 @@ You can find it in [About Profiles](https://docs.getdbt.com/docs/core/connect-da
 
 6. Test connection with `dbt`
 ```
-dbt debug --profiles-dir <Dest path file profiles.yml> --project-dir dbt_project
+dbt debug --profiles-dir <Path-Dest>/profiles.yml --project-dir dbt_project
 ```
 
 7. Run `dbt`
 ```
-dbt run --profiles-dir <Dest path file profiles.yml> --project-dir dbt_project
+dbt run --profiles-dir <Path-Dest>/profiles.yml --project-dir dbt_project
 ```
 
 8. Generate `dbt` documentation
 ```
-dbt docs generate --profiles-dir <Dest path file profiles.yml> --project-dir dbt_project
+dbt docs generate --profiles-dir <Path-Dest>/profiles.yml --project-dir dbt_project
 ```
 
 9. Connect to local server `dbt`
 ```
-dbt docs serve --profiles-dir <Dest path file profiles.yml> --project-dir dbt_project
+dbt docs serve --profiles-dir <Path-Dest>/profiles.yml --project-dir dbt_project
 ```
