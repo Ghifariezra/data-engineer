@@ -1,0 +1,14 @@
+dbt_project:
+  outputs:
+    dev:
+      type: snowflake
+      account: <account-locator>.<cloud-region>
+      user: <user-name>
+      private_key_passphrase: <passphrase>
+      private_key_path: <path-to-private-key>
+      database: <database-name>
+      schema: <schema-name>
+      role: <role-name>
+      warehouse: <warehouse-name>
+      threads: 30
+  target: dev
