@@ -1,19 +1,19 @@
 version: 2
 
 models:
-  - name: my_first_dbt_model
-    description: "A starter dbt model"
+  - name: raw_categories
+    description: "Trasformed model for raw_categories"
     columns:
-      - name: id
+      - name: category_id
         description: "The primary key for this table"
         data_tests:
           - unique
           - not_null
 
-  - name: my_second_dbt_model
-    description: "A starter dbt model"
+  - name: raw_customers
+    description: "Trasformed model for raw_customers"
     columns:
-      - name: id
+      - name: customer_id
         description: "The primary key for this table"
         data_tests:
           - unique
