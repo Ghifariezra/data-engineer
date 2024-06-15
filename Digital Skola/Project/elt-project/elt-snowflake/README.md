@@ -61,4 +61,4 @@ dbt docs serve --profiles-dir <Dest path file profiles.yml> --project-dir dbt_pr
 ```
 
 ### Final Result
-You can find it in [final-result](result)
+You can find it in [CHECK-THE-FINAL-RESULT-HERE](result)
