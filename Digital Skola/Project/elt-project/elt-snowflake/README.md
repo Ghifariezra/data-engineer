@@ -34,22 +34,31 @@ python -m pip install -r requirements/dbt-installation.txt
 5. If you are done, you can set up the `profiles.yml` file because in contains credentials for connections.
 You can find it in [About Profiles](https://docs.getdbt.com/docs/core/connect-data-platform/profiles.yml)
 
-6. Test connection with `dbt`
+6. Add `dbt-utils` package
+before that you must open the `dbt_project` folder.
+```
+dbt deps
+```
+
+7. Test connection with `dbt`
 ```
 dbt debug --profiles-dir <Dest path file profiles.yml> --project-dir dbt_project
 ```
 
-7. Run `dbt`
+8. Run `dbt`
 ```
 dbt run --profiles-dir <Dest path file profiles.yml> --project-dir dbt_project
 ```
 
-8. Generate `dbt` documentation
+9. Generate `dbt` documentation
 ```
 dbt docs generate --profiles-dir <Dest path file profiles.yml> --project-dir dbt_project
 ```
 
-9. Connect to local server `dbt`
+10. Connect to local server `dbt`
 ```
 dbt docs serve --profiles-dir <Dest path file profiles.yml> --project-dir dbt_project
 ```
+
+### Final Result
+You can find it in [final-result](result)
