@@ -16,3 +16,6 @@ OLTP = os.environ.get('OLTP')
 ```
 ## You can modify this project in the file `config.py`
 You can see the file in [config.py](https://github.com/Ghifariezra/data-engineer/blob/f052e6a6e14ac1b9165b926c904611f9db8c73cd/Digital%20Skola/Project/etl-project/etl/config/config.py)
+
+### Final Result
+You can find it in [DASHBOARD-RESULT](etl/dashboard/dashboard_project1.pdf)
