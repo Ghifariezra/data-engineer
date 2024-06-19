@@ -1,0 +1,8 @@
+pandas
+SQLAlchemy
+psycopg2
+psycopg2-binary
+snowflake-connector-python
+snowflake-connector-python[pandas]
+-- upgrade snowflake-sqlalchemy
+python-dotenv
