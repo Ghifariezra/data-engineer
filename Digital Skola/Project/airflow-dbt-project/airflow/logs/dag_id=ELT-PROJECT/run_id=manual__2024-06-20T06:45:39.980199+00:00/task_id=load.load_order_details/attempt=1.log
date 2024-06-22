@@ -1,0 +1,33 @@
+[2024-06-20T06:45:57.820+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-20T06:45:57.906+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ELT-PROJECT.load.load_order_details manual__2024-06-20T06:45:39.980199+00:00 [queued]>
+[2024-06-20T06:45:57.946+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ELT-PROJECT.load.load_order_details manual__2024-06-20T06:45:39.980199+00:00 [queued]>
+[2024-06-20T06:45:57.955+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-06-20T06:45:58.032+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): load.load_order_details> on 2024-06-20 06:45:39.980199+00:00
+[2024-06-20T06:45:58.086+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=1330) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-20T06:45:58.095+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ELT-PROJECT', 'load.load_order_details', 'manual__2024-06-20T06:45:39.980199+00:00', '--job-id', '60', '--raw', '--subdir', 'DAGS_FOLDER/elt.py', '--cfg-path', '/tmp/tmptf_uoqcc']
+[2024-06-20T06:45:58.112+0000] {standard_task_runner.py:91} INFO - Job 60: Subtask load.load_order_details
+[2024-06-20T06:45:58.109+0000] {standard_task_runner.py:63} INFO - Started process 1356 to run task
+[2024-06-20T06:45:58.232+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-06-20T06:45:58.469+0000] {task_command.py:426} INFO - Running <TaskInstance: ELT-PROJECT.load.load_order_details manual__2024-06-20T06:45:39.980199+00:00 [running]> on host airflow-scheduler
+[2024-06-20T06:45:59.365+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Data-Ninja' AIRFLOW_CTX_DAG_ID='ELT-PROJECT' AIRFLOW_CTX_TASK_ID='load.load_order_details' AIRFLOW_CTX_EXECUTION_DATE='2024-06-20T06:45:39.980199+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-20T06:45:39.980199+00:00'
+[2024-06-20T06:45:59.372+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-20T06:45:59.379+0000] {connection.py:399} INFO - Snowflake Connector for Python Version: 3.10.1, Python Version: 3.12.4, Platform: Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.36
+[2024-06-20T06:45:59.386+0000] {connection.py:1249} INFO - THIS CONNECTION IS IN INSECURE MODE. IT MEANS THE CERTIFICATE WILL BE VALIDATED BUT THE CERTIFICATE REVOCATION STATUS WILL NOT BE CHECKED.
+[2024-06-20T06:45:59.967+0000] {ssl_wrap_socket.py:100} INFO - THIS CONNECTION IS IN INSECURE MODE. IT MEANS THE CERTIFICATE WILL BE VALIDATED BUT THE CERTIFICATE REVOCATION STATUS WILL NOT BE CHECKED.
+[2024-06-20T06:46:00.636+0000] {logging_mixin.py:188} INFO - Nama kolom di DataFrame: Index(['orderID', 'productID', 'unitPrice', 'quantity', 'discount'], dtype='object')
+[2024-06-20T06:46:01.804+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-06-20T06:46:09.010+0000] {ssl_wrap_socket.py:100} INFO - THIS CONNECTION IS IN INSECURE MODE. IT MEANS THE CERTIFICATE WILL BE VALIDATED BUT THE CERTIFICATE REVOCATION STATUS WILL NOT BE CHECKED.
+[2024-06-20T06:46:11.990+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-06-20T06:46:12.651+0000] {cursor.py:1149} INFO - Number of results in first chunk: 5
+[2024-06-20T06:46:13.026+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-06-20T06:46:13.961+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-06-20T06:46:16.205+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-06-20T06:46:16.207+0000] {logging_mixin.py:188} INFO - Done order_details.
+[2024-06-20T06:46:16.208+0000] {connection.py:762} INFO - closed
+[2024-06-20T06:46:16.588+0000] {connection.py:768} INFO - No async queries seem to be running, deleting session
+[2024-06-20T06:46:16.999+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-06-20T06:46:17.001+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-20T06:46:17.024+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=ELT-PROJECT, task_id=load.load_order_details, run_id=manual__2024-06-20T06:45:39.980199+00:00, execution_date=20240620T064539, start_date=20240620T064557, end_date=20240620T064617
+[2024-06-20T06:46:17.105+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-20T06:46:17.173+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-06-20T06:46:17.178+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

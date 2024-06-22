@@ -1,0 +1,67 @@
+[2024-06-20T14:29:35.632+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-20T14:29:35.753+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ELT-PROJECT.extract.extract_employee_territories manual__2024-06-20T14:29:24.211440+00:00 [queued]>
+[2024-06-20T14:29:35.804+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ELT-PROJECT.extract.extract_employee_territories manual__2024-06-20T14:29:24.211440+00:00 [queued]>
+[2024-06-20T14:29:35.807+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-06-20T14:29:35.947+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): extract.extract_employee_territories> on 2024-06-20 14:29:24.211440+00:00
+[2024-06-20T14:29:36.037+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ELT-PROJECT', 'extract.extract_employee_territories', 'manual__2024-06-20T14:29:24.211440+00:00', '--job-id', '598', '--raw', '--subdir', 'DAGS_FOLDER/elt.py', '--cfg-path', '/tmp/tmpbnq2svpc']
+[2024-06-20T14:29:36.063+0000] {standard_task_runner.py:91} INFO - Job 598: Subtask extract.extract_employee_territories
+[2024-06-20T14:29:36.144+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=4032) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-20T14:29:36.149+0000] {standard_task_runner.py:63} INFO - Started process 4063 to run task
+[2024-06-20T14:29:36.278+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-06-20T14:29:36.605+0000] {task_command.py:426} INFO - Running <TaskInstance: ELT-PROJECT.extract.extract_employee_territories manual__2024-06-20T14:29:24.211440+00:00 [running]> on host airflow-scheduler
+[2024-06-20T14:29:37.310+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Data-Ninja' AIRFLOW_CTX_DAG_ID='ELT-PROJECT' AIRFLOW_CTX_TASK_ID='extract.extract_employee_territories' AIRFLOW_CTX_EXECUTION_DATE='2024-06-20T14:29:24.211440+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-20T14:29:24.211440+00:00'
+[2024-06-20T14:29:37.322+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-20T14:29:37.835+0000] {python.py:237} INFO - Done. Returned value was:     employeeID  territoryID
+0            1         6897
+1            1        19713
+2            2         1581
+3            2         1730
+4            2         1833
+5            2         2116
+6            2         2139
+7            2         2184
+8            2        40222
+9            3        30346
+10           3        31406
+11           3        32859
+12           3        33607
+13           4        20852
+14           4        27403
+15           4        27511
+16           5         2903
+17           5         7960
+18           5         8837
+19           5        10019
+20           5        10038
+21           5        11747
+22           5        14450
+23           6        85014
+24           6        85251
+25           6        98004
+26           6        98052
+27           6        98104
+28           7        60179
+29           7        60601
+30           7        80202
+31           7        80909
+32           7        90405
+33           7        94025
+34           7        94105
+35           7        95008
+36           7        95054
+37           7        95060
+38           8        19428
+39           8        44122
+40           8        45839
+41           8        53404
+42           9         3049
+43           9         3801
+44           9        48075
+45           9        48084
+46           9        48304
+47           9        55113
+48           9        55439
+[2024-06-20T14:29:37.869+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-20T14:29:38.184+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=ELT-PROJECT, task_id=extract.extract_employee_territories, run_id=manual__2024-06-20T14:29:24.211440+00:00, execution_date=20240620T142924, start_date=20240620T142935, end_date=20240620T142938
+[2024-06-20T14:29:38.351+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-20T14:29:38.430+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

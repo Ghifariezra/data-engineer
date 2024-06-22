@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: sources
+    database: ELT_PROJECT
+    schema: PUBLIC
+    tables:
+      - name: categories
+      - name: customers
+      - name: employee_territories
+      - name: employees
+      - name: order_details
+      - name: orders
+      - name: products
+      - name: regions
+      - name: shippers
+      - name: suppliers
+      - name: territories

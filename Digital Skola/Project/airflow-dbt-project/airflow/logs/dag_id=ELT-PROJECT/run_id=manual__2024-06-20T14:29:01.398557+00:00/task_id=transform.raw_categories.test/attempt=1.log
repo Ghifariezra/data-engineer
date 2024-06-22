@@ -1,0 +1,87 @@
+[2024-06-20T14:31:23.671+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-20T14:31:23.983+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ELT-PROJECT.transform.raw_categories.test manual__2024-06-20T14:29:01.398557+00:00 [queued]>
+[2024-06-20T14:31:24.162+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ELT-PROJECT.transform.raw_categories.test manual__2024-06-20T14:29:01.398557+00:00 [queued]>
+[2024-06-20T14:31:24.180+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-06-20T14:31:24.342+0000] {taskinstance.py:2330} INFO - Executing <Task(DbtTestLocalOperator): transform.raw_categories.test> on 2024-06-20 14:29:01.398557+00:00
+[2024-06-20T14:31:24.383+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ELT-PROJECT', 'transform.raw_categories.test', 'manual__2024-06-20T14:29:01.398557+00:00', '--job-id', '639', '--raw', '--subdir', 'DAGS_FOLDER/elt.py', '--cfg-path', '/tmp/tmp1v4ifz1h']
+[2024-06-20T14:31:24.397+0000] {standard_task_runner.py:91} INFO - Job 639: Subtask transform.raw_categories.test
+[2024-06-20T14:31:24.414+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=4533) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-20T14:31:24.421+0000] {standard_task_runner.py:63} INFO - Started process 4559 to run task
+[2024-06-20T14:31:24.497+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-06-20T14:31:24.790+0000] {task_command.py:426} INFO - Running <TaskInstance: ELT-PROJECT.transform.raw_categories.test manual__2024-06-20T14:29:01.398557+00:00 [running]> on host airflow-scheduler
+[2024-06-20T14:31:25.549+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Data-Ninja' AIRFLOW_CTX_DAG_ID='ELT-PROJECT' AIRFLOW_CTX_TASK_ID='transform.raw_categories.test' AIRFLOW_CTX_EXECUTION_DATE='2024-06-20T14:29:01.398557+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-20T14:29:01.398557+00:00'
+[2024-06-20T14:31:25.552+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-20T14:31:25.563+0000] {local.py:174} INFO - Could not import dbtRunner. Falling back to subprocess for invoking dbt.
+[2024-06-20T14:31:25.567+0000] {local.py:292} INFO - Cloning project to writable temp directory /tmp/tmpyq3kuak9 from /opt/airflow/dags/dbt/dbt_project
+[2024-06-20T14:31:25.596+0000] {local.py:303} INFO - Partial parse is enabled and the latest partial parse file is /tmp/cosmos/ELT-PROJECT__transform/target/partial_parse.msgpack
+[2024-06-20T14:31:25.783+0000] {base.py:84} INFO - Using connection ID 'snow_conn' for task execution.
+[2024-06-20T14:31:25.785+0000] {crypto.py:82} WARNING - empty cryptography key - values will not be stored encrypted.
+[2024-06-20T14:31:25.796+0000] {base.py:225} INFO - Using real values for profile dbt_project
+[2024-06-20T14:31:25.805+0000] {config.py:291} INFO - Creating temporary profiles.yml with use_mock_values=False at /tmp/tmp1w4h2b2w/profiles.yml with the following contents:
+dbt_project:
+    outputs:
+        dev:
+            account: sk84886.europe-west2.gcp
+            database: ELT_PROJECT
+            password: '{{ env_var(''COSMOS_CONN_SNOWFLAKE_PASSWORD'') }}'
+            role: SYSADMIN
+            schema: PUBLIC
+            type: snowflake
+            user: DATANINJA
+            warehouse: TRANSFORM
+    target: dev
+
+[2024-06-20T14:31:25.825+0000] {local.py:247} INFO - Trying to run the command:
+ ['/opt/airflow/dbt_venv/bin/dbt', 'deps', '--project-dir', '/tmp/tmpyq3kuak9', '--profiles-dir', '/tmp/tmp1w4h2b2w', '--profile', 'dbt_project', '--target', 'dev']
+From /tmp/tmpyq3kuak9
+[2024-06-20T14:31:25.835+0000] {subprocess.py:60} INFO - Tmp dir root location: 
+ /tmp
+[2024-06-20T14:31:25.844+0000] {subprocess.py:73} INFO - Running command: ['/opt/airflow/dbt_venv/bin/dbt', 'deps', '--project-dir', '/tmp/tmpyq3kuak9', '--profiles-dir', '/tmp/tmp1w4h2b2w', '--profile', 'dbt_project', '--target', 'dev']
+[2024-06-20T14:31:25.899+0000] {subprocess.py:84} INFO - Command output:
+[2024-06-20T14:31:41.713+0000] {subprocess.py:94} INFO - [0m14:31:41  Running with dbt=1.8.2
+[2024-06-20T14:31:43.460+0000] {subprocess.py:94} INFO - [0m14:31:43  Updating lock file in file path: /tmp/tmpyq3kuak9/package-lock.yml
+[2024-06-20T14:31:43.493+0000] {subprocess.py:94} INFO - [0m14:31:43  Installing dbt-labs/dbt_utils
+[2024-06-20T14:31:44.299+0000] {subprocess.py:94} INFO - [0m14:31:44  Installed from version 0.8.6
+[2024-06-20T14:31:44.311+0000] {subprocess.py:94} INFO - [0m14:31:44  Updated version available: 1.2.0
+[2024-06-20T14:31:44.318+0000] {subprocess.py:94} INFO - [0m14:31:44
+[2024-06-20T14:31:44.323+0000] {subprocess.py:94} INFO - [0m14:31:44  Updates available for packages: ['dbt-labs/dbt_utils']
+[2024-06-20T14:31:44.326+0000] {subprocess.py:94} INFO - Update your versions in packages.yml, then run dbt deps
+[2024-06-20T14:31:48.006+0000] {subprocess.py:98} INFO - Command exited with return code 0
+[2024-06-20T14:31:48.009+0000] {local.py:254} INFO - Update your versions in packages.yml, then run dbt deps
+[2024-06-20T14:31:48.012+0000] {local.py:247} INFO - Trying to run the command:
+ ['/opt/airflow/dbt_venv/bin/dbt', 'test', '--models', 'raw_categories', '--project-dir', '/tmp/tmpyq3kuak9', '--profiles-dir', '/tmp/tmp1w4h2b2w', '--profile', 'dbt_project', '--target', 'dev']
+From /tmp/tmpyq3kuak9
+[2024-06-20T14:31:48.020+0000] {subprocess.py:60} INFO - Tmp dir root location: 
+ /tmp
+[2024-06-20T14:31:48.024+0000] {subprocess.py:73} INFO - Running command: ['/opt/airflow/dbt_venv/bin/dbt', 'test', '--models', 'raw_categories', '--project-dir', '/tmp/tmpyq3kuak9', '--profiles-dir', '/tmp/tmp1w4h2b2w', '--profile', 'dbt_project', '--target', 'dev']
+[2024-06-20T14:31:48.104+0000] {subprocess.py:84} INFO - Command output:
+[2024-06-20T14:32:03.594+0000] {subprocess.py:94} INFO - [0m14:32:03  Running with dbt=1.8.2
+[2024-06-20T14:32:06.999+0000] {subprocess.py:94} INFO - [0m14:32:06  Registered adapter: snowflake=1.8.3
+[2024-06-20T14:32:11.594+0000] {subprocess.py:94} INFO - [0m14:32:11  Found 20 models, 27 data tests, 11 sources, 682 macros
+[2024-06-20T14:32:11.612+0000] {subprocess.py:94} INFO - [0m14:32:11
+[2024-06-20T14:32:19.443+0000] {subprocess.py:94} INFO - [0m14:32:19  Concurrency: 1 threads (target='dev')
+[2024-06-20T14:32:19.449+0000] {subprocess.py:94} INFO - [0m14:32:19
+[2024-06-20T14:32:19.484+0000] {subprocess.py:94} INFO - [0m14:32:19  1 of 2 START test not_null_raw_categories_CATEGORYID ........................... [RUN]
+[2024-06-20T14:32:21.498+0000] {subprocess.py:94} INFO - [0m14:32:21  1 of 2 PASS not_null_raw_categories_CATEGORYID ................................. [[32mPASS[0m in 2.01s]
+[2024-06-20T14:32:21.510+0000] {subprocess.py:94} INFO - [0m14:32:21  2 of 2 START test not_null_raw_categories_CATEGORYNAME ......................... [RUN]
+[2024-06-20T14:32:23.398+0000] {subprocess.py:94} INFO - [0m14:32:23  2 of 2 PASS not_null_raw_categories_CATEGORYNAME ............................... [[32mPASS[0m in 1.88s]
+[2024-06-20T14:32:23.456+0000] {subprocess.py:94} INFO - [0m14:32:23
+[2024-06-20T14:32:23.463+0000] {subprocess.py:94} INFO - [0m14:32:23  Finished running 2 data tests in 0 hours 0 minutes and 11.84 seconds (11.84s).
+[2024-06-20T14:32:24.000+0000] {subprocess.py:94} INFO - [0m14:32:24
+[2024-06-20T14:32:24.003+0000] {subprocess.py:94} INFO - [0m14:32:24  [32mCompleted successfully[0m
+[2024-06-20T14:32:24.006+0000] {subprocess.py:94} INFO - [0m14:32:24
+[2024-06-20T14:32:24.009+0000] {subprocess.py:94} INFO - [0m14:32:24  Done. PASS=2 WARN=0 ERROR=0 SKIP=0 TOTAL=2
+[2024-06-20T14:32:28.098+0000] {subprocess.py:98} INFO - Command exited with return code 0
+[2024-06-20T14:32:28.101+0000] {local.py:254} INFO - [0m14:32:24  Done. PASS=2 WARN=0 ERROR=0 SKIP=0 TOTAL=2
+[2024-06-20T14:32:28.279+0000] {local.py:196} WARNING - Artifact schema version: https://schemas.getdbt.com/dbt/manifest/v12.json is above dbt-ol supported version 7. This might cause errors.
+[2024-06-20T14:32:28.281+0000] {local.py:196} WARNING - Artifact schema version: https://schemas.getdbt.com/dbt/run-results/v6.json is above dbt-ol supported version 5. This might cause errors.
+[2024-06-20T14:32:28.303+0000] {local.py:349} INFO - Inlets: [Dataset(uri='snowflake://sk84886.europe-west2.gcp/ELT_PROJECT.raw.raw_categories', extra=None)]
+[2024-06-20T14:32:28.305+0000] {local.py:350} INFO - Outlets: []
+[2024-06-20T14:32:28.309+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-06-20T14:32:29.499+0000] {dag.py:3954} INFO - Setting next_dagrun for ELT-PROJECT to 2024-06-20 00:00:00+00:00, run_after=2024-06-21 00:00:00+00:00
+[2024-06-20T14:32:29.575+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/datasets/manager.py:53 SAWarning: DELETE statement on table 'task_outlet_dataset_reference' expected to delete 1 row(s); 0 were matched.  Please set confirm_deleted_rows=False within the mapper configuration to prevent this warning.
+[2024-06-20T14:32:29.829+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-20T14:32:29.976+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=ELT-PROJECT, task_id=transform.raw_categories.test, run_id=manual__2024-06-20T14:29:01.398557+00:00, execution_date=20240620T142901, start_date=20240620T143124, end_date=20240620T143229
+[2024-06-20T14:32:30.098+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-20T14:32:30.377+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-06-20T14:32:30.392+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

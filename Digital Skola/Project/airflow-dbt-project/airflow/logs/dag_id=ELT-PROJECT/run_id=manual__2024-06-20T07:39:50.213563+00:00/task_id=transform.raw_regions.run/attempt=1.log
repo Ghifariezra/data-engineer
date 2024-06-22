@@ -1,0 +1,88 @@
+[2024-06-20T07:40:36.563+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-20T07:40:36.754+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ELT-PROJECT.transform.raw_regions.run manual__2024-06-20T07:39:50.213563+00:00 [queued]>
+[2024-06-20T07:40:36.841+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ELT-PROJECT.transform.raw_regions.run manual__2024-06-20T07:39:50.213563+00:00 [queued]>
+[2024-06-20T07:40:36.845+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-06-20T07:40:36.974+0000] {taskinstance.py:2330} INFO - Executing <Task(DbtRunLocalOperator): transform.raw_regions.run> on 2024-06-20 07:39:50.213563+00:00
+[2024-06-20T07:40:37.033+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ELT-PROJECT', 'transform.raw_regions.run', 'manual__2024-06-20T07:39:50.213563+00:00', '--job-id', '183', '--raw', '--subdir', 'DAGS_FOLDER/elt.py', '--cfg-path', '/tmp/tmpdnca9_we']
+[2024-06-20T07:40:37.049+0000] {standard_task_runner.py:91} INFO - Job 183: Subtask transform.raw_regions.run
+[2024-06-20T07:40:37.059+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=1303) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-20T07:40:37.065+0000] {standard_task_runner.py:63} INFO - Started process 1323 to run task
+[2024-06-20T07:40:37.159+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-06-20T07:40:37.432+0000] {task_command.py:426} INFO - Running <TaskInstance: ELT-PROJECT.transform.raw_regions.run manual__2024-06-20T07:39:50.213563+00:00 [running]> on host airflow-scheduler
+[2024-06-20T07:40:37.964+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Data-Ninja' AIRFLOW_CTX_DAG_ID='ELT-PROJECT' AIRFLOW_CTX_TASK_ID='transform.raw_regions.run' AIRFLOW_CTX_EXECUTION_DATE='2024-06-20T07:39:50.213563+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-20T07:39:50.213563+00:00'
+[2024-06-20T07:40:37.968+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-20T07:40:37.993+0000] {local.py:174} INFO - Could not import dbtRunner. Falling back to subprocess for invoking dbt.
+[2024-06-20T07:40:38.003+0000] {local.py:292} INFO - Cloning project to writable temp directory /tmp/tmp20uz4gc9 from /opt/airflow/dags/dbt/dbt_project
+[2024-06-20T07:40:38.021+0000] {local.py:303} INFO - Partial parse is enabled and the latest partial parse file is /tmp/cosmos/ELT-PROJECT__transform/target/partial_parse.msgpack
+[2024-06-20T07:40:38.152+0000] {base.py:84} INFO - Using connection ID 'snow_conn' for task execution.
+[2024-06-20T07:40:38.154+0000] {crypto.py:82} WARNING - empty cryptography key - values will not be stored encrypted.
+[2024-06-20T07:40:38.168+0000] {base.py:225} INFO - Using real values for profile dbt_project
+[2024-06-20T07:40:38.175+0000] {config.py:291} INFO - Creating temporary profiles.yml with use_mock_values=False at /tmp/tmphnoyazuv/profiles.yml with the following contents:
+dbt_project:
+    outputs:
+        dev:
+            account: sk84886.europe-west2.gcp
+            database: ELT_PROJECT
+            password: '{{ env_var(''COSMOS_CONN_SNOWFLAKE_PASSWORD'') }}'
+            role: SYSADMIN
+            schema: PUBLIC
+            type: snowflake
+            user: DATANINJA
+            warehouse: TRANSFORM
+    target: dev
+
+[2024-06-20T07:40:38.183+0000] {local.py:247} INFO - Trying to run the command:
+ ['/opt/airflow/dbt_venv/bin/dbt', 'deps', '--project-dir', '/tmp/tmp20uz4gc9', '--profiles-dir', '/tmp/tmphnoyazuv', '--profile', 'dbt_project', '--target', 'dev']
+From /tmp/tmp20uz4gc9
+[2024-06-20T07:40:38.189+0000] {subprocess.py:60} INFO - Tmp dir root location: 
+ /tmp
+[2024-06-20T07:40:38.194+0000] {subprocess.py:73} INFO - Running command: ['/opt/airflow/dbt_venv/bin/dbt', 'deps', '--project-dir', '/tmp/tmp20uz4gc9', '--profiles-dir', '/tmp/tmphnoyazuv', '--profile', 'dbt_project', '--target', 'dev']
+[2024-06-20T07:40:38.232+0000] {subprocess.py:84} INFO - Command output:
+[2024-06-20T07:40:49.827+0000] {subprocess.py:94} INFO - [0m07:40:49  Running with dbt=1.8.2
+[2024-06-20T07:40:51.231+0000] {subprocess.py:94} INFO - [0m07:40:51  Updating lock file in file path: /tmp/tmp20uz4gc9/package-lock.yml
+[2024-06-20T07:40:51.257+0000] {subprocess.py:94} INFO - [0m07:40:51  Installing dbt-labs/dbt_utils
+[2024-06-20T07:40:52.218+0000] {subprocess.py:94} INFO - [0m07:40:52  Installed from version 0.8.6
+[2024-06-20T07:40:52.235+0000] {subprocess.py:94} INFO - [0m07:40:52  Updated version available: 1.2.0
+[2024-06-20T07:40:52.239+0000] {subprocess.py:94} INFO - [0m07:40:52
+[2024-06-20T07:40:52.257+0000] {subprocess.py:94} INFO - [0m07:40:52  Updates available for packages: ['dbt-labs/dbt_utils']
+[2024-06-20T07:40:52.306+0000] {subprocess.py:94} INFO - Update your versions in packages.yml, then run dbt deps
+[2024-06-20T07:40:55.414+0000] {subprocess.py:98} INFO - Command exited with return code 0
+[2024-06-20T07:40:55.434+0000] {local.py:254} INFO - Update your versions in packages.yml, then run dbt deps
+[2024-06-20T07:40:55.452+0000] {local.py:247} INFO - Trying to run the command:
+ ['/opt/airflow/dbt_venv/bin/dbt', 'run', '--models', 'raw_regions', '--project-dir', '/tmp/tmp20uz4gc9', '--profiles-dir', '/tmp/tmphnoyazuv', '--profile', 'dbt_project', '--target', 'dev']
+From /tmp/tmp20uz4gc9
+[2024-06-20T07:40:55.487+0000] {subprocess.py:60} INFO - Tmp dir root location: 
+ /tmp
+[2024-06-20T07:40:55.490+0000] {subprocess.py:73} INFO - Running command: ['/opt/airflow/dbt_venv/bin/dbt', 'run', '--models', 'raw_regions', '--project-dir', '/tmp/tmp20uz4gc9', '--profiles-dir', '/tmp/tmphnoyazuv', '--profile', 'dbt_project', '--target', 'dev']
+[2024-06-20T07:40:55.742+0000] {subprocess.py:84} INFO - Command output:
+[2024-06-20T07:41:10.882+0000] {subprocess.py:94} INFO - [0m07:41:10  Running with dbt=1.8.2
+[2024-06-20T07:41:16.006+0000] {subprocess.py:94} INFO - [0m07:41:16  Registered adapter: snowflake=1.8.3
+[2024-06-20T07:41:18.599+0000] {subprocess.py:94} INFO - [0m07:41:18  Unable to do partial parsing because of a version mismatch
+[2024-06-20T07:41:44.974+0000] {subprocess.py:94} INFO - [0m07:41:44  [[33mWARNING[0m]: Did not find matching node for patch with name 'raw_employee_territores' in the 'models' section of file 'models/staging/schema.yml'
+[2024-06-20T07:41:45.693+0000] {subprocess.py:94} INFO - [0m07:41:45  [[33mWARNING[0m]: Test 'test.dbt_project.not_null_raw_employee_territores_EMPLOYEEID.153e916ea2' (models/staging/schema.yml) depends on a node named 'raw_employee_territores' in package '' which was not found
+[2024-06-20T07:41:45.698+0000] {subprocess.py:94} INFO - [0m07:41:45  [[33mWARNING[0m]: Test 'test.dbt_project.not_null_raw_employee_territores_TERRITORYID.3a9175e83e' (models/staging/schema.yml) depends on a node named 'raw_employee_territores' in package '' which was not found
+[2024-06-20T07:41:47.880+0000] {subprocess.py:94} INFO - [0m07:41:47  Found 20 models, 32 data tests, 11 sources, 682 macros
+[2024-06-20T07:41:47.890+0000] {subprocess.py:94} INFO - [0m07:41:47
+[2024-06-20T07:41:56.272+0000] {subprocess.py:94} INFO - [0m07:41:56  Concurrency: 1 threads (target='dev')
+[2024-06-20T07:41:56.275+0000] {subprocess.py:94} INFO - [0m07:41:56
+[2024-06-20T07:41:56.322+0000] {subprocess.py:94} INFO - [0m07:41:56  1 of 1 START sql table model raw.raw_regions ................................... [RUN]
+[2024-06-20T07:41:59.008+0000] {subprocess.py:94} INFO - [0m07:41:59  1 of 1 OK created sql table model raw.raw_regions .............................. [[32mSUCCESS 1[0m in 2.68s]
+[2024-06-20T07:41:59.019+0000] {subprocess.py:94} INFO - [0m07:41:59
+[2024-06-20T07:41:59.020+0000] {subprocess.py:94} INFO - [0m07:41:59  Finished running 1 table model in 0 hours 0 minutes and 11.12 seconds (11.12s).
+[2024-06-20T07:41:59.234+0000] {subprocess.py:94} INFO - [0m07:41:59
+[2024-06-20T07:41:59.236+0000] {subprocess.py:94} INFO - [0m07:41:59  [32mCompleted successfully[0m
+[2024-06-20T07:41:59.237+0000] {subprocess.py:94} INFO - [0m07:41:59
+[2024-06-20T07:41:59.239+0000] {subprocess.py:94} INFO - [0m07:41:59  Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1
+[2024-06-20T07:42:01.153+0000] {subprocess.py:98} INFO - Command exited with return code 0
+[2024-06-20T07:42:01.155+0000] {local.py:254} INFO - [0m07:41:59  Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1
+[2024-06-20T07:42:02.527+0000] {local.py:196} WARNING - Artifact schema version: https://schemas.getdbt.com/dbt/manifest/v12.json is above dbt-ol supported version 7. This might cause errors.
+[2024-06-20T07:42:02.530+0000] {local.py:196} WARNING - Artifact schema version: https://schemas.getdbt.com/dbt/run-results/v6.json is above dbt-ol supported version 5. This might cause errors.
+[2024-06-20T07:42:02.558+0000] {local.py:349} INFO - Inlets: [Dataset(uri='snowflake://sk84886.europe-west2.gcp/ELT_PROJECT.PUBLIC.regions', extra=None)]
+[2024-06-20T07:42:02.567+0000] {local.py:350} INFO - Outlets: [Dataset(uri='snowflake://sk84886.europe-west2.gcp/ELT_PROJECT.raw.raw_regions', extra=None)]
+[2024-06-20T07:42:02.595+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-06-20T07:42:02.991+0000] {dag.py:3954} INFO - Setting next_dagrun for ELT-PROJECT to None, run_after=None
+[2024-06-20T07:42:03.070+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/datasets/manager.py:53 SAWarning: DELETE statement on table 'task_outlet_dataset_reference' expected to delete 1 row(s); 0 were matched.  Please set confirm_deleted_rows=False within the mapper configuration to prevent this warning.
+[2024-06-20T07:42:03.246+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-20T07:42:03.497+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=ELT-PROJECT, task_id=transform.raw_regions.run, run_id=manual__2024-06-20T07:39:50.213563+00:00, execution_date=20240620T073950, start_date=20240620T074036, end_date=20240620T074203
+[2024-06-20T07:42:03.665+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-20T07:42:03.700+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

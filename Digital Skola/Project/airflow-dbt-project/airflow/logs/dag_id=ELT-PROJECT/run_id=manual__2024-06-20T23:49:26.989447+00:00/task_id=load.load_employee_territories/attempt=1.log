@@ -1,0 +1,32 @@
+[2024-06-20T23:49:46.253+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-20T23:49:46.347+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ELT-PROJECT.load.load_employee_territories manual__2024-06-20T23:49:26.989447+00:00 [queued]>
+[2024-06-20T23:49:46.375+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ELT-PROJECT.load.load_employee_territories manual__2024-06-20T23:49:26.989447+00:00 [queued]>
+[2024-06-20T23:49:46.376+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-06-20T23:49:46.418+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): load.load_employee_territories> on 2024-06-20 23:49:26.989447+00:00
+[2024-06-20T23:49:46.438+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=681) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-20T23:49:46.441+0000] {standard_task_runner.py:63} INFO - Started process 709 to run task
+[2024-06-20T23:49:46.445+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ELT-PROJECT', 'load.load_employee_territories', 'manual__2024-06-20T23:49:26.989447+00:00', '--job-id', '58', '--raw', '--subdir', 'DAGS_FOLDER/elt.py', '--cfg-path', '/tmp/tmpet8r31fy']
+[2024-06-20T23:49:46.453+0000] {standard_task_runner.py:91} INFO - Job 58: Subtask load.load_employee_territories
+[2024-06-20T23:49:46.554+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-06-20T23:49:46.672+0000] {task_command.py:426} INFO - Running <TaskInstance: ELT-PROJECT.load.load_employee_territories manual__2024-06-20T23:49:26.989447+00:00 [running]> on host airflow-scheduler
+[2024-06-20T23:49:47.188+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Data-Ninja' AIRFLOW_CTX_DAG_ID='ELT-PROJECT' AIRFLOW_CTX_TASK_ID='load.load_employee_territories' AIRFLOW_CTX_EXECUTION_DATE='2024-06-20T23:49:26.989447+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-20T23:49:26.989447+00:00'
+[2024-06-20T23:49:47.193+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-20T23:49:47.196+0000] {connection.py:399} INFO - Snowflake Connector for Python Version: 3.10.1, Python Version: 3.12.4, Platform: Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.36
+[2024-06-20T23:49:47.199+0000] {connection.py:1249} INFO - THIS CONNECTION IS IN INSECURE MODE. IT MEANS THE CERTIFICATE WILL BE VALIDATED BUT THE CERTIFICATE REVOCATION STATUS WILL NOT BE CHECKED.
+[2024-06-20T23:49:47.381+0000] {ssl_wrap_socket.py:100} INFO - THIS CONNECTION IS IN INSECURE MODE. IT MEANS THE CERTIFICATE WILL BE VALIDATED BUT THE CERTIFICATE REVOCATION STATUS WILL NOT BE CHECKED.
+[2024-06-20T23:49:47.981+0000] {logging_mixin.py:188} INFO - Nama kolom di DataFrame: Index(['employeeID', 'territoryID'], dtype='object')
+[2024-06-20T23:49:48.383+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-06-20T23:49:49.640+0000] {ssl_wrap_socket.py:100} INFO - THIS CONNECTION IS IN INSECURE MODE. IT MEANS THE CERTIFICATE WILL BE VALIDATED BUT THE CERTIFICATE REVOCATION STATUS WILL NOT BE CHECKED.
+[2024-06-20T23:49:51.899+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-06-20T23:49:52.651+0000] {cursor.py:1149} INFO - Number of results in first chunk: 2
+[2024-06-20T23:49:53.004+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-06-20T23:49:53.627+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-06-20T23:49:54.936+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-06-20T23:49:54.940+0000] {logging_mixin.py:188} INFO - Done employee_territories.
+[2024-06-20T23:49:54.943+0000] {connection.py:762} INFO - closed
+[2024-06-20T23:49:55.369+0000] {connection.py:768} INFO - No async queries seem to be running, deleting session
+[2024-06-20T23:49:55.797+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-06-20T23:49:55.802+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-20T23:49:55.900+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=ELT-PROJECT, task_id=load.load_employee_territories, run_id=manual__2024-06-20T23:49:26.989447+00:00, execution_date=20240620T234926, start_date=20240620T234946, end_date=20240620T234955
+[2024-06-20T23:49:56.087+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-20T23:49:56.119+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

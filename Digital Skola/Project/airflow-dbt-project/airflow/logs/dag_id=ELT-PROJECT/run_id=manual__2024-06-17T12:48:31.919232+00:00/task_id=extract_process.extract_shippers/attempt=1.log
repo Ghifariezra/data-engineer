@@ -1,0 +1,23 @@
+[2024-06-17T12:48:41.610+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-17T12:48:41.749+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ELT-PROJECT.extract_process.extract_shippers manual__2024-06-17T12:48:31.919232+00:00 [queued]>
+[2024-06-17T12:48:41.797+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ELT-PROJECT.extract_process.extract_shippers manual__2024-06-17T12:48:31.919232+00:00 [queued]>
+[2024-06-17T12:48:41.801+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-06-17T12:48:41.876+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): extract_process.extract_shippers> on 2024-06-17 12:48:31.919232+00:00
+[2024-06-17T12:48:41.901+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=3745) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-17T12:48:41.911+0000] {standard_task_runner.py:63} INFO - Started process 3782 to run task
+[2024-06-17T12:48:41.910+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ELT-PROJECT', 'extract_process.extract_shippers', 'manual__2024-06-17T12:48:31.919232+00:00', '--job-id', '372', '--raw', '--subdir', 'DAGS_FOLDER/elt.py', '--cfg-path', '/tmp/tmp812ca4qg']
+[2024-06-17T12:48:41.920+0000] {standard_task_runner.py:91} INFO - Job 372: Subtask extract_process.extract_shippers
+[2024-06-17T12:48:42.025+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-06-17T12:48:42.229+0000] {task_command.py:426} INFO - Running <TaskInstance: ELT-PROJECT.extract_process.extract_shippers manual__2024-06-17T12:48:31.919232+00:00 [running]> on host airflow-scheduler
+[2024-06-17T12:48:42.900+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Data-Ninja' AIRFLOW_CTX_DAG_ID='ELT-PROJECT' AIRFLOW_CTX_TASK_ID='extract_process.extract_shippers' AIRFLOW_CTX_EXECUTION_DATE='2024-06-17T12:48:31.919232+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-17T12:48:31.919232+00:00'
+[2024-06-17T12:48:42.910+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-17T12:48:42.920+0000] {logging_mixin.py:188} INFO - Extracting from: https://raw.githubusercontent.com/graphql-compose/graphql-compose-examples/master/examples/northwind/data/csv/shippers.csv
+[2024-06-17T12:48:43.522+0000] {python.py:237} INFO - Done. Returned value was:    shipperID       companyName           phone
+0          1    Speedy Express  (503) 555-9831
+1          2    United Package  (503) 555-3199
+2          3  Federal Shipping  (503) 555-9931
+[2024-06-17T12:48:43.546+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-17T12:48:43.684+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=ELT-PROJECT, task_id=extract_process.extract_shippers, run_id=manual__2024-06-17T12:48:31.919232+00:00, execution_date=20240617T124831, start_date=20240617T124841, end_date=20240617T124843
+[2024-06-17T12:48:43.787+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-17T12:48:43.844+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-17T12:48:43.849+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

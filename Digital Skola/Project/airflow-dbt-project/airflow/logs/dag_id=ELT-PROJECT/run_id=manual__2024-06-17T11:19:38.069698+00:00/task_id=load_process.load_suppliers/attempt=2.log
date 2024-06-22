@@ -1,0 +1,65 @@
+[2024-06-17T11:24:55.454+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-17T11:24:55.563+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ELT-PROJECT.load_process.load_suppliers manual__2024-06-17T11:19:38.069698+00:00 [queued]>
+[2024-06-17T11:24:55.598+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ELT-PROJECT.load_process.load_suppliers manual__2024-06-17T11:19:38.069698+00:00 [queued]>
+[2024-06-17T11:24:55.603+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 2
+[2024-06-17T11:24:55.664+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): load_process.load_suppliers> on 2024-06-17 11:19:38.069698+00:00
+[2024-06-17T11:24:55.688+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=1132) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-17T11:24:55.698+0000] {standard_task_runner.py:63} INFO - Started process 1160 to run task
+[2024-06-17T11:24:55.696+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ELT-PROJECT', 'load_process.load_suppliers', 'manual__2024-06-17T11:19:38.069698+00:00', '--job-id', '150', '--raw', '--subdir', 'DAGS_FOLDER/elt.py', '--cfg-path', '/tmp/tmp8oe725aw']
+[2024-06-17T11:24:55.706+0000] {standard_task_runner.py:91} INFO - Job 150: Subtask load_process.load_suppliers
+[2024-06-17T11:24:55.798+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-06-17T11:24:55.925+0000] {task_command.py:426} INFO - Running <TaskInstance: ELT-PROJECT.load_process.load_suppliers manual__2024-06-17T11:19:38.069698+00:00 [running]> on host airflow-scheduler
+[2024-06-17T11:24:56.487+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Data-Ninja' AIRFLOW_CTX_DAG_ID='ELT-PROJECT' AIRFLOW_CTX_TASK_ID='load_process.load_suppliers' AIRFLOW_CTX_EXECUTION_DATE='2024-06-17T11:19:38.069698+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-17T11:19:38.069698+00:00'
+[2024-06-17T11:24:56.495+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-17T11:24:56.504+0000] {connection.py:399} INFO - Snowflake Connector for Python Version: 3.10.1, Python Version: 3.12.4, Platform: Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.36
+[2024-06-17T11:24:56.517+0000] {connection.py:1239} INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2024-06-17T11:24:56.519+0000] {connection.py:1249} INFO - THIS CONNECTION IS IN INSECURE MODE. IT MEANS THE CERTIFICATE WILL BE VALIDATED BUT THE CERTIFICATE REVOCATION STATUS WILL NOT BE CHECKED.
+[2024-06-17T11:24:56.840+0000] {ssl_wrap_socket.py:100} INFO - THIS CONNECTION IS IN INSECURE MODE. IT MEANS THE CERTIFICATE WILL BE VALIDATED BUT THE CERTIFICATE REVOCATION STATUS WILL NOT BE CHECKED.
+[2024-06-17T11:24:57.516+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-17T11:24:57.521+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/decorators/base.py", line 265, in execute
+    return_value = super().execute(context)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/elt.py", line 67, in load
+    load_func(df=df, table_names=table)
+  File "/local_module/loaders.py", line 34, in load_func
+    table_name=table,
+               ^^^^^
+NameError: name 'table' is not defined. Did you mean: 'tuple'?
+[2024-06-17T11:24:57.651+0000] {taskinstance.py:225} INFO - Setting task load_process.load_order_details to SKIPPED due to dag's `fail_stop` setting.
+[2024-06-17T11:24:57.668+0000] {taskinstance.py:225} INFO - Setting task load_process.load_categories to SKIPPED due to dag's `fail_stop` setting.
+[2024-06-17T11:24:57.671+0000] {taskinstance.py:225} INFO - Setting task load_process.load_employee_territories to SKIPPED due to dag's `fail_stop` setting.
+[2024-06-17T11:24:57.675+0000] {taskinstance.py:225} INFO - Setting task load_process.load_orders to SKIPPED due to dag's `fail_stop` setting.
+[2024-06-17T11:24:57.696+0000] {taskinstance.py:225} INFO - Setting task load_process.load_territories to SKIPPED due to dag's `fail_stop` setting.
+[2024-06-17T11:24:57.701+0000] {taskinstance.py:225} INFO - Setting task load_process.load_regions to SKIPPED due to dag's `fail_stop` setting.
+[2024-06-17T11:24:57.703+0000] {taskinstance.py:225} INFO - Setting task load_process.load_customers to SKIPPED due to dag's `fail_stop` setting.
+[2024-06-17T11:24:57.704+0000] {taskinstance.py:222} INFO - Forcing task load_process.load_shippers to fail due to dag's `fail_stop` setting
+[2024-06-17T11:24:57.705+0000] {taskinstance.py:1774} ERROR - Recording the task instance as FAILED
+[2024-06-17T11:24:57.750+0000] {taskinstance.py:222} INFO - Forcing task load_process.load_products to fail due to dag's `fail_stop` setting
+[2024-06-17T11:24:57.754+0000] {taskinstance.py:1774} ERROR - Recording the task instance as FAILED
+[2024-06-17T11:24:57.820+0000] {taskinstance.py:222} INFO - Forcing task load_process.load_employees to fail due to dag's `fail_stop` setting
+[2024-06-17T11:24:57.824+0000] {taskinstance.py:1774} ERROR - Recording the task instance as FAILED
+[2024-06-17T11:24:57.861+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=ELT-PROJECT, task_id=load_process.load_suppliers, run_id=manual__2024-06-17T11:19:38.069698+00:00, execution_date=20240617T111938, start_date=20240617T112455, end_date=20240617T112457
+[2024-06-17T11:24:57.903+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 150 for task load_process.load_suppliers (name 'table' is not defined; 1160)
+[2024-06-17T11:24:57.961+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-06-17T11:24:58.039+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-17T11:24:58.051+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

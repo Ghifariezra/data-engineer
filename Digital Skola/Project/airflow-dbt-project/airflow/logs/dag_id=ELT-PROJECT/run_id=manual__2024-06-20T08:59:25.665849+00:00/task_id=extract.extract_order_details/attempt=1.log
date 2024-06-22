@@ -1,0 +1,31 @@
+[2024-06-20T08:59:34.049+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-20T08:59:34.150+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ELT-PROJECT.extract.extract_order_details manual__2024-06-20T08:59:25.665849+00:00 [queued]>
+[2024-06-20T08:59:34.210+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ELT-PROJECT.extract.extract_order_details manual__2024-06-20T08:59:25.665849+00:00 [queued]>
+[2024-06-20T08:59:34.213+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-06-20T08:59:34.255+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): extract.extract_order_details> on 2024-06-20 08:59:25.665849+00:00
+[2024-06-20T08:59:34.274+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=4238) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-20T08:59:34.278+0000] {standard_task_runner.py:63} INFO - Started process 4269 to run task
+[2024-06-20T08:59:34.277+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ELT-PROJECT', 'extract.extract_order_details', 'manual__2024-06-20T08:59:25.665849+00:00', '--job-id', '282', '--raw', '--subdir', 'DAGS_FOLDER/elt.py', '--cfg-path', '/tmp/tmpy2iwxf4n']
+[2024-06-20T08:59:34.283+0000] {standard_task_runner.py:91} INFO - Job 282: Subtask extract.extract_order_details
+[2024-06-20T08:59:34.336+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-06-20T08:59:34.428+0000] {task_command.py:426} INFO - Running <TaskInstance: ELT-PROJECT.extract.extract_order_details manual__2024-06-20T08:59:25.665849+00:00 [running]> on host airflow-scheduler
+[2024-06-20T08:59:34.591+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Data-Ninja' AIRFLOW_CTX_DAG_ID='ELT-PROJECT' AIRFLOW_CTX_TASK_ID='extract.extract_order_details' AIRFLOW_CTX_EXECUTION_DATE='2024-06-20T08:59:25.665849+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-20T08:59:25.665849+00:00'
+[2024-06-20T08:59:34.593+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-20T08:59:35.184+0000] {python.py:237} INFO - Done. Returned value was:       orderID  productID  unitPrice  quantity  discount
+0       10248         11      14.00        12      0.00
+1       10248         42       9.80        10      0.00
+2       10248         72      34.80         5      0.00
+3       10249         14      18.60         9      0.00
+4       10249         51      42.40        40      0.00
+...       ...        ...        ...       ...       ...
+2150    11077         64      33.25         2      0.03
+2151    11077         66      17.00         1      0.00
+2152    11077         73      15.00         2      0.01
+2153    11077         75       7.75         4      0.00
+2154    11077         77      13.00         2      0.00
+
+[2155 rows x 5 columns]
+[2024-06-20T08:59:35.263+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-20T08:59:36.074+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=ELT-PROJECT, task_id=extract.extract_order_details, run_id=manual__2024-06-20T08:59:25.665849+00:00, execution_date=20240620T085925, start_date=20240620T085934, end_date=20240620T085936
+[2024-06-20T08:59:36.217+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-20T08:59:36.245+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

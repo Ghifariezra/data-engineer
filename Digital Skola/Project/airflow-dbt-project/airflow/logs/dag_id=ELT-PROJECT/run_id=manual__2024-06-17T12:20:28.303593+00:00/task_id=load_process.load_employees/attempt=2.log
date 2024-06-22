@@ -1,0 +1,71 @@
+[2024-06-17T12:26:08.288+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-17T12:26:08.398+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ELT-PROJECT.load_process.load_employees manual__2024-06-17T12:20:28.303593+00:00 [queued]>
+[2024-06-17T12:26:08.430+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ELT-PROJECT.load_process.load_employees manual__2024-06-17T12:20:28.303593+00:00 [queued]>
+[2024-06-17T12:26:08.432+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 2
+[2024-06-17T12:26:08.497+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): load_process.load_employees> on 2024-06-17 12:20:28.303593+00:00
+[2024-06-17T12:26:08.518+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=3070) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-17T12:26:08.520+0000] {standard_task_runner.py:63} INFO - Started process 3134 to run task
+[2024-06-17T12:26:08.528+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ELT-PROJECT', 'load_process.load_employees', 'manual__2024-06-17T12:20:28.303593+00:00', '--job-id', '304', '--raw', '--subdir', 'DAGS_FOLDER/elt.py', '--cfg-path', '/tmp/tmp2stvlgrn']
+[2024-06-17T12:26:08.535+0000] {standard_task_runner.py:91} INFO - Job 304: Subtask load_process.load_employees
+[2024-06-17T12:26:08.594+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-06-17T12:26:08.747+0000] {task_command.py:426} INFO - Running <TaskInstance: ELT-PROJECT.load_process.load_employees manual__2024-06-17T12:20:28.303593+00:00 [running]> on host airflow-scheduler
+[2024-06-17T12:26:09.182+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Data-Ninja' AIRFLOW_CTX_DAG_ID='ELT-PROJECT' AIRFLOW_CTX_TASK_ID='load_process.load_employees' AIRFLOW_CTX_EXECUTION_DATE='2024-06-17T12:20:28.303593+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-17T12:20:28.303593+00:00'
+[2024-06-17T12:26:09.185+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-17T12:26:09.188+0000] {connection.py:399} INFO - Snowflake Connector for Python Version: 3.10.1, Python Version: 3.12.4, Platform: Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.36
+[2024-06-17T12:26:09.190+0000] {connection.py:1249} INFO - THIS CONNECTION IS IN INSECURE MODE. IT MEANS THE CERTIFICATE WILL BE VALIDATED BUT THE CERTIFICATE REVOCATION STATUS WILL NOT BE CHECKED.
+[2024-06-17T12:26:09.272+0000] {ssl_wrap_socket.py:100} INFO - THIS CONNECTION IS IN INSECURE MODE. IT MEANS THE CERTIFICATE WILL BE VALIDATED BUT THE CERTIFICATE REVOCATION STATUS WILL NOT BE CHECKED.
+[2024-06-17T12:26:09.663+0000] {logging_mixin.py:188} INFO - Nama kolom di DataFrame: Index(['territoryID', 'territoryDescription', 'regionID'], dtype='object')
+[2024-06-17T12:26:11.213+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-06-17T12:26:11.986+0000] {ssl_wrap_socket.py:100} INFO - THIS CONNECTION IS IN INSECURE MODE. IT MEANS THE CERTIFICATE WILL BE VALIDATED BUT THE CERTIFICATE REVOCATION STATUS WILL NOT BE CHECKED.
+[2024-06-17T12:26:14.702+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-06-17T12:26:15.369+0000] {cursor.py:1149} INFO - Number of results in first chunk: 3
+[2024-06-17T12:26:15.768+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-06-17T12:26:16.279+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-06-17T12:26:16.728+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-17T12:26:16.732+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/decorators/base.py", line 265, in execute
+    return_value = super().execute(context)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/elt.py", line 67, in load
+    load_func(df=df, filename=table_name)
+  File "/local_module/loaders.py", line 34, in load_func
+    write_pandas(
+  File "/home/airflow/.local/lib/python3.12/site-packages/snowflake/connector/pandas_tools.py", line 438, in write_pandas
+    copy_results = cursor.execute(copy_into_sql, _is_internal=True).fetchall()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/snowflake/connector/cursor.py", line 1080, in execute
+    Error.errorhandler_wrapper(self.connection, self, error_class, errvalue)
+  File "/home/airflow/.local/lib/python3.12/site-packages/snowflake/connector/errors.py", line 290, in errorhandler_wrapper
+    handed_over = Error.hand_to_other_handler(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/snowflake/connector/errors.py", line 345, in hand_to_other_handler
+    cursor.errorhandler(connection, cursor, error_class, error_value)
+  File "/home/airflow/.local/lib/python3.12/site-packages/snowflake/connector/errors.py", line 221, in default_errorhandler
+    raise error_class(
+snowflake.connector.errors.ProgrammingError: 000904 (42000): 01b511ca-0000-8bcc-0000-ec9500046c0e: SQL compilation error: error line 1 at position 82
+invalid identifier 'TERRITORYID'
+[2024-06-17T12:26:16.825+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=ELT-PROJECT, task_id=load_process.load_employees, run_id=manual__2024-06-17T12:20:28.303593+00:00, execution_date=20240617T122028, start_date=20240617T122608, end_date=20240617T122616
+[2024-06-17T12:26:16.880+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 304 for task load_process.load_employees (000904 (42000): 01b511ca-0000-8bcc-0000-ec9500046c0e: SQL compilation error: error line 1 at position 82
+invalid identifier 'TERRITORYID'; 3134)
+[2024-06-17T12:26:16.919+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-06-17T12:26:17.003+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-17T12:26:17.017+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -1,0 +1,59 @@
+[2024-06-17T12:51:56.330+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-17T12:51:56.502+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ELT-PROJECT.load_process.load_order_details manual__2024-06-17T12:51:38.712440+00:00 [queued]>
+[2024-06-17T12:51:56.573+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ELT-PROJECT.load_process.load_order_details manual__2024-06-17T12:51:38.712440+00:00 [queued]>
+[2024-06-17T12:51:56.577+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-06-17T12:51:56.674+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): load_process.load_order_details> on 2024-06-17 12:51:38.712440+00:00
+[2024-06-17T12:51:56.718+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=3957) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-17T12:51:56.726+0000] {standard_task_runner.py:63} INFO - Started process 3994 to run task
+[2024-06-17T12:51:56.776+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ELT-PROJECT', 'load_process.load_order_details', 'manual__2024-06-17T12:51:38.712440+00:00', '--job-id', '413', '--raw', '--subdir', 'DAGS_FOLDER/elt.py', '--cfg-path', '/tmp/tmpret7sjdl']
+[2024-06-17T12:51:56.784+0000] {standard_task_runner.py:91} INFO - Job 413: Subtask load_process.load_order_details
+[2024-06-17T12:51:56.914+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-06-17T12:51:57.178+0000] {task_command.py:426} INFO - Running <TaskInstance: ELT-PROJECT.load_process.load_order_details manual__2024-06-17T12:51:38.712440+00:00 [running]> on host airflow-scheduler
+[2024-06-17T12:51:57.730+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Data-Ninja' AIRFLOW_CTX_DAG_ID='ELT-PROJECT' AIRFLOW_CTX_TASK_ID='load_process.load_order_details' AIRFLOW_CTX_EXECUTION_DATE='2024-06-17T12:51:38.712440+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-17T12:51:38.712440+00:00'
+[2024-06-17T12:51:57.739+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-17T12:51:57.747+0000] {connection.py:399} INFO - Snowflake Connector for Python Version: 3.10.1, Python Version: 3.12.4, Platform: Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.36
+[2024-06-17T12:51:57.750+0000] {connection.py:1249} INFO - THIS CONNECTION IS IN INSECURE MODE. IT MEANS THE CERTIFICATE WILL BE VALIDATED BUT THE CERTIFICATE REVOCATION STATUS WILL NOT BE CHECKED.
+[2024-06-17T12:51:57.918+0000] {ssl_wrap_socket.py:100} INFO - THIS CONNECTION IS IN INSECURE MODE. IT MEANS THE CERTIFICATE WILL BE VALIDATED BUT THE CERTIFICATE REVOCATION STATUS WILL NOT BE CHECKED.
+[2024-06-17T12:51:58.509+0000] {logging_mixin.py:188} INFO - Nama kolom di DataFrame: Index(['orderID', 'productID', 'unitPrice', 'quantity', 'discount'], dtype='object')
+[2024-06-17T12:51:58.920+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-06-17T12:51:59.800+0000] {ssl_wrap_socket.py:100} INFO - THIS CONNECTION IS IN INSECURE MODE. IT MEANS THE CERTIFICATE WILL BE VALIDATED BUT THE CERTIFICATE REVOCATION STATUS WILL NOT BE CHECKED.
+[2024-06-17T12:52:02.827+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-06-17T12:52:03.763+0000] {cursor.py:1149} INFO - Number of results in first chunk: 5
+[2024-06-17T12:52:04.181+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-06-17T12:52:04.766+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-06-17T12:52:06.460+0000] {cursor.py:1149} INFO - Number of results in first chunk: 1
+[2024-06-17T12:52:06.461+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-17T12:52:06.463+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/decorators/base.py", line 265, in execute
+    return_value = super().execute(context)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/elt.py", line 67, in load
+    load_func(df=df, filename=table_name)
+  File "/local_module/loaders.py", line 42, in load_func
+    print(f"Done {table}")
+                  ^^^^^
+NameError: name 'table' is not defined. Did you mean: 'tuple'?
+[2024-06-17T12:52:06.636+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=ELT-PROJECT, task_id=load_process.load_order_details, run_id=manual__2024-06-17T12:51:38.712440+00:00, execution_date=20240617T125138, start_date=20240617T125156, end_date=20240617T125206
+[2024-06-17T12:52:06.681+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 413 for task load_process.load_order_details (name 'table' is not defined; 3994)
+[2024-06-17T12:52:06.742+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-06-17T12:52:06.816+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-17T12:52:06.827+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

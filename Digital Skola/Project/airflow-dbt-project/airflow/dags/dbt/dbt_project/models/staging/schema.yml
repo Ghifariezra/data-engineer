@@ -1,0 +1,244 @@
+version: 2
+
+models:
+  - name: raw_categories
+    description: "Trasformed model for raw_categories"
+    columns:
+      - name: CATEGORYID
+        description: "The primary key for this table"
+        data_tests:
+          - not_null
+      - name: CATEGORYNAME
+        data_tests:
+          - not_null      
+        description: "The name of the category"
+      - name: DESCRIPTION
+        description: "The description of the category"
+      - name: PICTURE
+        description: "The picture of the category"
+
+  - name: raw_customers
+    description: "Trasformed model for raw_customers"
+    columns:
+      - name: CUSTOMERID
+        description: "The primary key for this table"
+        data_tests:
+          - not_null
+      - name: COMPANYNAME
+        data_tests:
+          - not_null
+      - name: CONTACTNAME
+        description: "The name of the contact"
+      - name: CONTACTTITLE
+        description: "The title of the contact"
+      - name: ADDRESS
+        description: "The address of the contact"
+      - name: CITY
+        description: "The city of the contact"
+      - name: REGION
+        description: "The region of the contact"
+      - name: POSTALCODE
+        description: "The postal code of the contact"
+      - name: COUNTRY
+        description: "The country of the contact"
+      - name: PHONE
+        description: "The phone number of the contact"
+      - name: FAX
+        description: "The fax of the contact"
+
+  - name: raw_employee_territores
+    description: "Trasformed model for raw_employee_territores"
+    columns:
+      - name: EMPLOYEEID
+        description: "The primary key for this table"
+        data_tests:
+          - not_null
+      - name: TERRITORYID
+        data_tests:
+          - not_null
+        description: "The territory id of the employee"
+  
+  - name: raw_employees
+    description: "Trasformed model for raw_employees"
+    columns:
+      - name: EMPLOYEEID
+        description: "The primary key for this table"
+        data_tests:
+          - not_null
+      - name: LASTNAME
+        description: "The last name of the employee"
+      - name: FIRSTNAME
+        description: "The first name of the employee"
+      - name: TITLE
+        description: "The title of the employee"
+      - name: TITLEOFCOURTESY
+        description: "The title of courtesy of the employee"
+      - name: BIRTHDATE
+        description: "The birth date of the employee"
+      - name: HIREDATE
+        description: "The hire date of the employee"
+      - name: ADDRESS
+        description: "The address of the employee"
+      - name: CITY
+        description: "The city of the employee"
+      - name: REGION
+        description: "The region of the employee"
+      - name: POSTALCODE
+        description: "The postal code of the employee"
+      - name: COUNTRY
+        description: "The country of the employee"
+      - name: HOMEPHONE
+        description: "The home phone of the employee"
+      - name: EXTENSION
+        description: "The extension of the employee"
+      - name: NOTES
+        description: "The notes of the employee"
+      - name: REPORTSTO
+        description: "The reports to of the employee"
+      - name: PHOTOPATH
+        description: "The photo path of the employee"
+
+  - name: raw_order_details
+    description: "Trasformed model for raw_order_details"
+    columns:
+      - name: ORDERID
+        data_tests:
+          - not_null
+        description: "The order id of the order detail"
+      - name: PRODUCTID
+        data_tests:
+          - not_null
+        description: "The product id of the order detail"
+      - name: UNITPRICE
+        description: "The unit price of the order detail"
+      - name: QUANTITY
+        description: "The quantity of the order detail"
+      - name: DISCOUNT
+        description: "The discount of the order detail"
+  
+  - name: raw_orders
+    description: "Trasformed model for raw_orders"
+    columns:
+      - name: ORDERID
+        description: "The primary key for this table"
+        data_tests:
+          - not_null
+      - name: CUSTOMERID
+        description: "The customer id of the order"
+      - name: EMPLOYEEID
+        description: "The employee id of the order"
+      - name: ORDERDATE
+        description: "The order date of the order"
+      - name: REQUIREDDATE
+        description: "The required date of the order"
+      - name: SHIPPEDDATE
+        description: "The shipped date of the order"
+      - name: SHIPVIA
+        description: "The ship via of the order"
+      - name: FREIGHT
+        description: "The freight of the order"
+      - name: SHIPNAME
+        description: "The ship name of the order"
+      - name: SHIPADDRESS
+        description: "The ship address of the order"
+      - name: SHIPCITY
+        description: "The ship city of the order"
+      - name: SHIPREGION
+        description: "The ship region of the order"
+      - name: SHIPPOSTALCODE
+        description: "The ship postal code of the order"
+      - name: SHIPCOUNTRY
+        description: "The ship country of the order"
+  
+  - name: raw_products
+    description: "Trasformed model for raw_products"
+    columns:
+      - name: PRODUCTID
+        description: "The primary key for this table"
+        data_tests:
+          - not_null
+      - name: PRODUCTNAME
+        description: "The name of the product"
+      - name: SUPPLIERID
+        description: "The supplier id of the product"
+      - name: CATEGORYID
+        description: "The category id of the product"
+      - name: QUANTITYPERUNIT
+        description: "The quantity per unit of the product"
+      - name: UNITPRICE
+        description: "The unit price of the product"
+      - name: UNITSINSTOCK
+        description: "The units in stock of the product"
+      - name: UNITSONORDER
+        description: "The units on order of the product"
+      - name: REORDERLEVEL
+        description: "The reorder level of the product"
+      - name: DISCONTINUED
+        description: "The discontinued of the product"
+      - name: DISCRIPTION
+        description: "The description of the product"
+
+  - name: raw_regions
+    description: "Trasformed model for raw_regions"
+    columns:
+      - name: REGIONID
+        description: "The primary key for this table"
+        data_tests:
+          - not_null
+      - name: REGIONNAME
+        description: "The name of the region"
+  
+  - name: raw_shippers
+    description: "Trasformed model for raw_shippers"
+    columns:
+      - name: SHIPPERID
+        description: "The primary key for this table"
+        data_tests:
+          - not_null
+      - name: COMPANYNAME
+        description: "The name of the shipper"
+      - name: PHONE
+        description: "The phone of the shipper"
+  
+  - name: raw_suppliers
+    description: "Trasformed model for raw_suppliers"
+    columns:
+      - name: SUPPLIERID
+        description: "The primary key for this table"
+        data_tests:
+          - not_null
+      - name: COMPANYNAME
+        description: "The name of the supplier"
+      - name: CONTACTNAME
+        description: "The contact name of the supplier"
+      - name: CONTACTTITLE
+        description: "The contact title of the supplier"
+      - name: ADDRESS
+        description: "The address of the supplier"
+      - name: CITY
+        description: "The city of the supplier"
+      - name: REGION
+        description: "The region of the supplier"
+      - name: POSTALCODE
+        description: "The postal code of the supplier"
+      - name: COUNTRY
+        description: "The country of the supplier"
+      - name: PHONE
+        description: "The phone of the supplier"
+      - name: FAX
+        description: "The fax of the supplier"
+  
+  - name: raw_territories
+    description: "Trasformed model for raw_territories"
+    columns:
+      - name: TERRITORYID
+        description: "The primary key for this table"
+        data_tests:
+          - not_null
+      - name: TERRITORYNAME
+        description: "The name of the territory"
+      - name: REGIONID
+        description: "The region id of the territory"
+
+
+      

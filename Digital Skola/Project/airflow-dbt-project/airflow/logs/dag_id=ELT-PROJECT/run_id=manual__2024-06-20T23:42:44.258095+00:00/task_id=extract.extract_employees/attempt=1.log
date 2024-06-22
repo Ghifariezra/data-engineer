@@ -1,0 +1,29 @@
+[2024-06-20T23:42:54.293+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-20T23:42:54.379+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ELT-PROJECT.extract.extract_employees manual__2024-06-20T23:42:44.258095+00:00 [queued]>
+[2024-06-20T23:42:54.436+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ELT-PROJECT.extract.extract_employees manual__2024-06-20T23:42:44.258095+00:00 [queued]>
+[2024-06-20T23:42:54.448+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-06-20T23:42:54.542+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): extract.extract_employees> on 2024-06-20 23:42:44.258095+00:00
+[2024-06-20T23:42:54.582+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ELT-PROJECT', 'extract.extract_employees', 'manual__2024-06-20T23:42:44.258095+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/elt.py', '--cfg-path', '/tmp/tmpgudbvedg']
+[2024-06-20T23:42:54.595+0000] {standard_task_runner.py:91} INFO - Job 6: Subtask extract.extract_employees
+[2024-06-20T23:42:54.596+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=223) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-20T23:42:54.602+0000] {standard_task_runner.py:63} INFO - Started process 246 to run task
+[2024-06-20T23:42:54.691+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-06-20T23:42:55.064+0000] {task_command.py:426} INFO - Running <TaskInstance: ELT-PROJECT.extract.extract_employees manual__2024-06-20T23:42:44.258095+00:00 [running]> on host airflow-scheduler
+[2024-06-20T23:42:55.829+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Data-Ninja' AIRFLOW_CTX_DAG_ID='ELT-PROJECT' AIRFLOW_CTX_TASK_ID='extract.extract_employees' AIRFLOW_CTX_EXECUTION_DATE='2024-06-20T23:42:44.258095+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-20T23:42:44.258095+00:00'
+[2024-06-20T23:42:55.843+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-20T23:42:56.578+0000] {python.py:237} INFO - Done. Returned value was:    employeeID   lastName  ... reportsTo                               photoPath
+0           1    Davolio  ...       2.0    http://accweb/emmployees/davolio.bmp
+1           2     Fuller  ...       NaN     http://accweb/emmployees/fuller.bmp
+2           3  Leverling  ...       2.0  http://accweb/emmployees/leverling.bmp
+3           4    Peacock  ...       2.0    http://accweb/emmployees/peacock.bmp
+4           5   Buchanan  ...       2.0   http://accweb/emmployees/buchanan.bmp
+5           6     Suyama  ...       5.0    http://accweb/emmployees/davolio.bmp
+6           7       King  ...       5.0    http://accweb/emmployees/davolio.bmp
+7           8   Callahan  ...       2.0    http://accweb/emmployees/davolio.bmp
+8           9  Dodsworth  ...       5.0    http://accweb/emmployees/davolio.bmp
+
+[9 rows x 18 columns]
+[2024-06-20T23:42:56.720+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-20T23:42:57.005+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=ELT-PROJECT, task_id=extract.extract_employees, run_id=manual__2024-06-20T23:42:44.258095+00:00, execution_date=20240620T234244, start_date=20240620T234254, end_date=20240620T234257
+[2024-06-20T23:42:57.128+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-20T23:42:57.181+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

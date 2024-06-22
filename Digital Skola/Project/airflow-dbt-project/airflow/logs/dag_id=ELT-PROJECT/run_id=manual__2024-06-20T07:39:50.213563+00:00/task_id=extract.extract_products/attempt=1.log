@@ -1,0 +1,31 @@
+[2024-06-20T07:40:00.584+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-20T07:40:00.708+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ELT-PROJECT.extract.extract_products manual__2024-06-20T07:39:50.213563+00:00 [queued]>
+[2024-06-20T07:40:00.802+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ELT-PROJECT.extract.extract_products manual__2024-06-20T07:39:50.213563+00:00 [queued]>
+[2024-06-20T07:40:00.807+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-06-20T07:40:00.963+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): extract.extract_products> on 2024-06-20 07:39:50.213563+00:00
+[2024-06-20T07:40:00.991+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=1121) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-20T07:40:01.005+0000] {standard_task_runner.py:63} INFO - Started process 1142 to run task
+[2024-06-20T07:40:00.990+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ELT-PROJECT', 'extract.extract_products', 'manual__2024-06-20T07:39:50.213563+00:00', '--job-id', '162', '--raw', '--subdir', 'DAGS_FOLDER/elt.py', '--cfg-path', '/tmp/tmp5fu1ui09']
+[2024-06-20T07:40:01.026+0000] {standard_task_runner.py:91} INFO - Job 162: Subtask extract.extract_products
+[2024-06-20T07:40:01.092+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-06-20T07:40:01.302+0000] {task_command.py:426} INFO - Running <TaskInstance: ELT-PROJECT.extract.extract_products manual__2024-06-20T07:39:50.213563+00:00 [running]> on host airflow-scheduler
+[2024-06-20T07:40:01.797+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Data-Ninja' AIRFLOW_CTX_DAG_ID='ELT-PROJECT' AIRFLOW_CTX_TASK_ID='extract.extract_products' AIRFLOW_CTX_EXECUTION_DATE='2024-06-20T07:39:50.213563+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-20T07:39:50.213563+00:00'
+[2024-06-20T07:40:01.804+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-20T07:40:02.441+0000] {python.py:237} INFO - Done. Returned value was:     productID                      productName  ...  reorderLevel  discontinued
+0           1                             Chai  ...            10             0
+1           2                            Chang  ...            25             0
+2           3                    Aniseed Syrup  ...            25             0
+3           4     Chef Anton's Cajun Seasoning  ...             0             0
+4           5           Chef Anton's Gumbo Mix  ...             0             1
+..        ...                              ...  ...           ...           ...
+72         73                       Röd Kaviar  ...             5             0
+73         74                    Longlife Tofu  ...             5             0
+74         75             Rhönbräu Klosterbier  ...            25             0
+75         76                     Lakkalikööri  ...            20             0
+76         77  Original Frankfurter grüne Soße  ...            15             0
+
+[77 rows x 10 columns]
+[2024-06-20T07:40:02.489+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-20T07:40:03.449+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=ELT-PROJECT, task_id=extract.extract_products, run_id=manual__2024-06-20T07:39:50.213563+00:00, execution_date=20240620T073950, start_date=20240620T074000, end_date=20240620T074003
+[2024-06-20T07:40:03.857+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-20T07:40:03.907+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

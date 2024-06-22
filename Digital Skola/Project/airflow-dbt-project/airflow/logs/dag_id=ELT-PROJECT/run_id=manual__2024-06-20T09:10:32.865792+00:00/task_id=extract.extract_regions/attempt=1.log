@@ -1,0 +1,23 @@
+[2024-06-20T09:10:40.595+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-20T09:10:40.772+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ELT-PROJECT.extract.extract_regions manual__2024-06-20T09:10:32.865792+00:00 [queued]>
+[2024-06-20T09:10:40.874+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ELT-PROJECT.extract.extract_regions manual__2024-06-20T09:10:32.865792+00:00 [queued]>
+[2024-06-20T09:10:40.876+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-06-20T09:10:40.944+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): extract.extract_regions> on 2024-06-20 09:10:32.865792+00:00
+[2024-06-20T09:10:40.985+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=5192) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-20T09:10:40.991+0000] {standard_task_runner.py:63} INFO - Started process 5215 to run task
+[2024-06-20T09:10:40.996+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ELT-PROJECT', 'extract.extract_regions', 'manual__2024-06-20T09:10:32.865792+00:00', '--job-id', '330', '--raw', '--subdir', 'DAGS_FOLDER/elt.py', '--cfg-path', '/tmp/tmp3xdiksri']
+[2024-06-20T09:10:41.005+0000] {standard_task_runner.py:91} INFO - Job 330: Subtask extract.extract_regions
+[2024-06-20T09:10:41.109+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-06-20T09:10:41.360+0000] {task_command.py:426} INFO - Running <TaskInstance: ELT-PROJECT.extract.extract_regions manual__2024-06-20T09:10:32.865792+00:00 [running]> on host airflow-scheduler
+[2024-06-20T09:10:41.861+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Data-Ninja' AIRFLOW_CTX_DAG_ID='ELT-PROJECT' AIRFLOW_CTX_TASK_ID='extract.extract_regions' AIRFLOW_CTX_EXECUTION_DATE='2024-06-20T09:10:32.865792+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-20T09:10:32.865792+00:00'
+[2024-06-20T09:10:41.864+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-20T09:10:42.436+0000] {python.py:237} INFO - Done. Returned value was:    regionID regionDescription
+0         1           Eastern
+1         2           Western
+2         3          Northern
+3         4          Southern
+[2024-06-20T09:10:42.452+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-20T09:10:43.012+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=ELT-PROJECT, task_id=extract.extract_regions, run_id=manual__2024-06-20T09:10:32.865792+00:00, execution_date=20240620T091032, start_date=20240620T091040, end_date=20240620T091043
+[2024-06-20T09:10:43.137+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-20T09:10:43.502+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-06-20T09:10:43.514+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

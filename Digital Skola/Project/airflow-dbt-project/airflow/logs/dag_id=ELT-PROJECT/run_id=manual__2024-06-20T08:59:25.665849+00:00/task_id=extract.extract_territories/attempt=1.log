@@ -1,0 +1,71 @@
+[2024-06-20T08:59:32.858+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-20T08:59:32.942+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ELT-PROJECT.extract.extract_territories manual__2024-06-20T08:59:25.665849+00:00 [queued]>
+[2024-06-20T08:59:32.972+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ELT-PROJECT.extract.extract_territories manual__2024-06-20T08:59:25.665849+00:00 [queued]>
+[2024-06-20T08:59:32.980+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-06-20T08:59:33.045+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): extract.extract_territories> on 2024-06-20 08:59:25.665849+00:00
+[2024-06-20T08:59:33.081+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=4233) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-20T08:59:33.090+0000] {standard_task_runner.py:63} INFO - Started process 4259 to run task
+[2024-06-20T08:59:33.098+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ELT-PROJECT', 'extract.extract_territories', 'manual__2024-06-20T08:59:25.665849+00:00', '--job-id', '273', '--raw', '--subdir', 'DAGS_FOLDER/elt.py', '--cfg-path', '/tmp/tmp60pht_77']
+[2024-06-20T08:59:33.116+0000] {standard_task_runner.py:91} INFO - Job 273: Subtask extract.extract_territories
+[2024-06-20T08:59:33.228+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-06-20T08:59:33.477+0000] {task_command.py:426} INFO - Running <TaskInstance: ELT-PROJECT.extract.extract_territories manual__2024-06-20T08:59:25.665849+00:00 [running]> on host airflow-scheduler
+[2024-06-20T08:59:34.017+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Data-Ninja' AIRFLOW_CTX_DAG_ID='ELT-PROJECT' AIRFLOW_CTX_TASK_ID='extract.extract_territories' AIRFLOW_CTX_EXECUTION_DATE='2024-06-20T08:59:25.665849+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-20T08:59:25.665849+00:00'
+[2024-06-20T08:59:34.029+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-20T08:59:34.658+0000] {python.py:237} INFO - Done. Returned value was:     territoryID territoryDescription  regionID
+0          1581             Westboro         1
+1          1730              Bedford         1
+2          1833            Georgetow         1
+3          2116               Boston         1
+4          2139            Cambridge         1
+5          2184            Braintree         1
+6          2903           Providence         1
+7          3049               Hollis         3
+8          3801           Portsmouth         3
+9          6897               Wilton         1
+10         7960           Morristown         1
+11         8837               Edison         1
+12        10019              NewYork         1
+13        10038              NewYork         1
+14        11747             Mellvile         1
+15        14450             Fairport         1
+16        19428         Philadelphia         3
+17        19713               Neward         1
+18        20852            Rockville         1
+19        27403           Greensboro         1
+20        27511                 Cary         1
+21        29202             Columbia         4
+22        30346              Atlanta         4
+23        31406             Savannah         4
+24        32859              Orlando         4
+25        33607                Tampa         4
+26        40222           Louisville         1
+27        44122            Beachwood         3
+28        45839              Findlay         3
+29        48075           Southfield         3
+30        48084                 Troy         3
+31        48304      BloomfieldHills         3
+32        53404               Racine         3
+33        55113            Roseville         3
+34        55439          Minneapolis         3
+35        60179       HoffmanEstates         2
+36        60601              Chicago         2
+37        72716          Bentonville         4
+38        75234               Dallas         4
+39        78759               Austin         4
+40        80202               Denver         2
+41        80909      ColoradoSprings         2
+42        85014              Phoenix         2
+43        85251           Scottsdale         2
+44        90405          SantaMonica         2
+45        94025            MenloPark         2
+46        94105         SanFrancisco         2
+47        95008             Campbell         2
+48        95054           SantaClara         2
+49        95060            SantaCruz         2
+50        98004             Bellevue         2
+51        98052              Redmond         2
+52        98104              Seattle         2
+[2024-06-20T08:59:34.675+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-20T08:59:35.350+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=ELT-PROJECT, task_id=extract.extract_territories, run_id=manual__2024-06-20T08:59:25.665849+00:00, execution_date=20240620T085925, start_date=20240620T085932, end_date=20240620T085935
+[2024-06-20T08:59:35.464+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-20T08:59:35.538+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

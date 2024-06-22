@@ -1,0 +1,29 @@
+[2024-06-17T12:51:49.725+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-17T12:51:49.867+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ELT-PROJECT.extract_process.extract_categories manual__2024-06-17T12:51:38.712440+00:00 [queued]>
+[2024-06-17T12:51:49.917+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ELT-PROJECT.extract_process.extract_categories manual__2024-06-17T12:51:38.712440+00:00 [queued]>
+[2024-06-17T12:51:49.919+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-06-17T12:51:49.966+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): extract_process.extract_categories> on 2024-06-17 12:51:38.712440+00:00
+[2024-06-17T12:51:49.982+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ELT-PROJECT', 'extract_process.extract_categories', 'manual__2024-06-17T12:51:38.712440+00:00', '--job-id', '398', '--raw', '--subdir', 'DAGS_FOLDER/elt.py', '--cfg-path', '/tmp/tmpi6as7vcy']
+[2024-06-17T12:51:49.984+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=3908) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-17T12:51:49.998+0000] {standard_task_runner.py:63} INFO - Started process 3940 to run task
+[2024-06-17T12:51:49.992+0000] {standard_task_runner.py:91} INFO - Job 398: Subtask extract_process.extract_categories
+[2024-06-17T12:51:50.092+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-06-17T12:51:50.349+0000] {task_command.py:426} INFO - Running <TaskInstance: ELT-PROJECT.extract_process.extract_categories manual__2024-06-17T12:51:38.712440+00:00 [running]> on host airflow-scheduler
+[2024-06-17T12:51:50.937+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Data-Ninja' AIRFLOW_CTX_DAG_ID='ELT-PROJECT' AIRFLOW_CTX_TASK_ID='extract_process.extract_categories' AIRFLOW_CTX_EXECUTION_DATE='2024-06-17T12:51:38.712440+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-17T12:51:38.712440+00:00'
+[2024-06-17T12:51:50.944+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-17T12:51:50.948+0000] {logging_mixin.py:188} INFO - Extracting from: https://raw.githubusercontent.com/graphql-compose/graphql-compose-examples/master/examples/northwind/data/csv/categories.csv
+[2024-06-17T12:51:51.228+0000] {python.py:237} INFO - Done. Returned value was:    categoryID  ...                                            picture
+0           1  ...  0x151C2F00020000000D000E0014002100FFFFFFFF4269...
+1           2  ...  0x151C2F00020000000D000E0014002100FFFFFFFF4269...
+2           3  ...  0x151C2F00020000000D000E0014002100FFFFFFFF4269...
+3           4  ...  0x151C2F00020000000D000E0014002100FFFFFFFF4269...
+4           5  ...  0x151C2F00020000000D000E0014002100FFFFFFFF4269...
+5           6  ...  0x151C2F00020000000D000E0014002100FFFFFFFF4269...
+6           7  ...  0x151C2F00020000000D000E0014002100FFFFFFFF4269...
+7           8  ...  0x151C2F00020000000D000E0014002100FFFFFFFF4269...
+
+[8 rows x 4 columns]
+[2024-06-17T12:51:51.283+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-17T12:51:51.417+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=ELT-PROJECT, task_id=extract_process.extract_categories, run_id=manual__2024-06-17T12:51:38.712440+00:00, execution_date=20240617T125138, start_date=20240617T125149, end_date=20240617T125151
+[2024-06-17T12:51:51.495+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-17T12:51:51.523+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

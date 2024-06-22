@@ -1,0 +1,1 @@
+[2024-06-19T14:26:12.865+0000] {scheduler_job_runner.py:769} ERROR - Executor reports task instance <TaskInstance: ELT-PROJECT.extract.extract_employees manual__2024-06-19T14:25:12.576846+00:00 [queued]> finished (failed) although the task says it's queued. (Info: None) Was the task killed externally?

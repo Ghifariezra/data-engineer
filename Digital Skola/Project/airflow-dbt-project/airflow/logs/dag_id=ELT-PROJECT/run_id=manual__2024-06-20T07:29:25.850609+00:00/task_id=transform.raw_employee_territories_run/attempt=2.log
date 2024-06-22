@@ -1,0 +1,60 @@
+[2024-06-20T07:36:01.281+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-20T07:36:01.455+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ELT-PROJECT.transform.raw_employee_territories_run manual__2024-06-20T07:29:25.850609+00:00 [queued]>
+[2024-06-20T07:36:01.584+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ELT-PROJECT.transform.raw_employee_territories_run manual__2024-06-20T07:29:25.850609+00:00 [queued]>
+[2024-06-20T07:36:01.589+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 2
+[2024-06-20T07:36:01.716+0000] {taskinstance.py:2330} INFO - Executing <Task(DbtRunLocalOperator): transform.raw_employee_territories_run> on 2024-06-20 07:29:25.850609+00:00
+[2024-06-20T07:36:01.745+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=972) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-20T07:36:01.759+0000] {standard_task_runner.py:63} INFO - Started process 992 to run task
+[2024-06-20T07:36:01.756+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'ELT-PROJECT', 'transform.raw_employee_territories_run', 'manual__2024-06-20T07:29:25.850609+00:00', '--job-id', '156', '--raw', '--subdir', 'DAGS_FOLDER/elt.py', '--cfg-path', '/tmp/tmpl6q7311l']
+[2024-06-20T07:36:01.765+0000] {standard_task_runner.py:91} INFO - Job 156: Subtask transform.raw_employee_territories_run
+[2024-06-20T07:36:01.898+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2024-06-20T07:36:02.086+0000] {task_command.py:426} INFO - Running <TaskInstance: ELT-PROJECT.transform.raw_employee_territories_run manual__2024-06-20T07:29:25.850609+00:00 [running]> on host airflow-scheduler
+[2024-06-20T07:36:02.671+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Data-Ninja' AIRFLOW_CTX_DAG_ID='ELT-PROJECT' AIRFLOW_CTX_TASK_ID='transform.raw_employee_territories_run' AIRFLOW_CTX_EXECUTION_DATE='2024-06-20T07:29:25.850609+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-20T07:29:25.850609+00:00'
+[2024-06-20T07:36:02.677+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-20T07:36:02.781+0000] {local.py:174} INFO - Could not import dbtRunner. Falling back to subprocess for invoking dbt.
+[2024-06-20T07:36:02.784+0000] {local.py:292} INFO - Cloning project to writable temp directory /tmp/tmp_i4o1oiv from /opt/airflow/dags/dbt/dbt_project
+[2024-06-20T07:36:02.821+0000] {local.py:303} INFO - Partial parse is enabled and the latest partial parse file is /tmp/cosmos/ELT-PROJECT__transform/target/partial_parse.msgpack
+[2024-06-20T07:36:03.032+0000] {base.py:84} INFO - Using connection ID 'snow_conn' for task execution.
+[2024-06-20T07:36:03.050+0000] {crypto.py:82} WARNING - empty cryptography key - values will not be stored encrypted.
+[2024-06-20T07:36:03.054+0000] {base.py:225} INFO - Using real values for profile dbt_project
+[2024-06-20T07:36:03.064+0000] {config.py:291} INFO - Creating temporary profiles.yml with use_mock_values=False at /tmp/tmpx6r8bptn/profiles.yml with the following contents:
+dbt_project:
+    outputs:
+        dev:
+            account: sk84886.europe-west2.gcp
+            database: ELT_PROJECT
+            password: '{{ env_var(''COSMOS_CONN_SNOWFLAKE_PASSWORD'') }}'
+            role: SYSADMIN
+            schema: PUBLIC
+            type: snowflake
+            user: DATANINJA
+            warehouse: TRANSFORM
+    target: dev
+
+[2024-06-20T07:36:03.070+0000] {local.py:247} INFO - Trying to run the command:
+ ['/opt/airflow/dbt_venv/bin/dbt', 'run', '--models', 'raw_employee_territories', '--project-dir', '/tmp/tmp_i4o1oiv', '--profiles-dir', '/tmp/tmpx6r8bptn', '--profile', 'dbt_project', '--target', 'dev']
+From /tmp/tmp_i4o1oiv
+[2024-06-20T07:36:03.089+0000] {subprocess.py:60} INFO - Tmp dir root location: 
+ /tmp
+[2024-06-20T07:36:03.092+0000] {subprocess.py:73} INFO - Running command: ['/opt/airflow/dbt_venv/bin/dbt', 'run', '--models', 'raw_employee_territories', '--project-dir', '/tmp/tmp_i4o1oiv', '--profiles-dir', '/tmp/tmpx6r8bptn', '--profile', 'dbt_project', '--target', 'dev']
+[2024-06-20T07:36:03.142+0000] {subprocess.py:84} INFO - Command output:
+[2024-06-20T07:36:14.097+0000] {subprocess.py:94} INFO - [0m07:36:14  Running with dbt=1.8.2
+[2024-06-20T07:36:16.516+0000] {subprocess.py:94} INFO - [0m07:36:16  Registered adapter: snowflake=1.8.3
+[2024-06-20T07:36:16.550+0000] {subprocess.py:94} INFO - [0m07:36:16  Encountered an error:
+[2024-06-20T07:36:16.566+0000] {subprocess.py:94} INFO - Compilation Error
+[2024-06-20T07:36:16.569+0000] {subprocess.py:94} INFO -   dbt found 1 package(s) specified in packages.yml, but only 0 package(s) installed in dbt_packages. Run "dbt deps" to install package dependencies.
+[2024-06-20T07:36:18.644+0000] {subprocess.py:98} INFO - Command exited with return code 2
+[2024-06-20T07:36:18.655+0000] {local.py:254} INFO -   dbt found 1 package(s) specified in packages.yml, but only 0 package(s) installed in dbt_packages. Run "dbt deps" to install package dependencies.
+[2024-06-20T07:36:19.431+0000] {local.py:196} WARNING - Artifact schema version: https://schemas.getdbt.com/dbt/manifest/v12.json is above dbt-ol supported version 7. This might cause errors.
+[2024-06-20T07:36:19.440+0000] {local.py:349} INFO - Inlets: []
+[2024-06-20T07:36:19.451+0000] {local.py:350} INFO - Outlets: []
+[2024-06-20T07:36:19.454+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-06-20T07:36:19.601+0000] {dag.py:3954} INFO - Setting next_dagrun for ELT-PROJECT to None, run_after=None
+[2024-06-20T07:36:19.696+0000] {local.py:184} ERROR - [0m07:36:14  Running with dbt=1.8.2
+[0m07:36:16  Registered adapter: snowflake=1.8.3
+[0m07:36:16  Encountered an error:
+Compilation Error
+  dbt found 1 package(s) specified in packages.yml, but only 0 package(s) installed in dbt_packages. Run "dbt deps" to install package dependencies.
+[2024-06-20T07:36:19.702+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-20T07:36:19.830+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-20T07:36:19.877+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -1,0 +1,20 @@
+FROM apache/airflow:latest
+
+USER root
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+         vim \
+  && apt-get autoremove -yqq --purge \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
+USER airflow
+
+COPY ../packages/packages-airflow.txt /packages/packages-airflow.txt
+
+RUN pip install --no-cache-dir -r /packages/packages-airflow.txt
+
+RUN python -m venv dbt_venv && source dbt_venv/bin/activate && \
+    pip install --no-cache-dir dbt-snowflake && deactivate
+
+COPY --chown=airflow:root ../airflow/ /opt/airflow/dags
