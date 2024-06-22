@@ -1,6 +1,9 @@
 # Architecture
 ![ELT-Architecture](architecture/ELT.png)
 
+# ERD-Datawarehouse
+![ERD-Datawarehouse](result/erd/erd-dwh.png)
+
 # How to run it ?
 ## Pre-requisites
 1. Create `virtual environment`
