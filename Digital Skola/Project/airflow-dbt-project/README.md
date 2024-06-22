@@ -39,6 +39,7 @@ SNOWFLAKE_WAREHOUSE=<Your-Warehouse-Name>
 SNOWFLAKE_ROLE=<Your-Role-Name>
 ```
 ## How to use
+Running Airflow with `docker-compose`
 ```bash
 docker-compose -f ./docker/docker-compose.yml --env-file .env up -d
 ```
