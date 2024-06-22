@@ -2,7 +2,7 @@
 ![Orchestrator-Airflow-ELT](result/architecture/Architecture.png)
 
 # ERD-Datawarehouse
-![ERD-Conceptual-Model](result/erd/erd.png)
+![ERD-Conceptual-Model](result/erd/erd-dwh.png)
 
 ## Pre-requisites
 1. Build docker image for Airflow
