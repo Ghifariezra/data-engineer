@@ -15,7 +15,7 @@ docker network create -d bridge dataninja-networks
 ```
 3. Setup file .env
 ```zsh
-SOURCE=https://raw.githubusercontent.com/graphql-compose/graphql-compose-examples/master/examples/northwind/data/csv/categories.csv
+SOURCE=https://raw.githubusercontent.com/graphql-compose/graphql-compose-examples/master/examples/northwind/data/csv
 
 # AIRFLOW ATTRIBUTES
 AIRFLOW_CONTAINER_WEBSERVER=airflow-webserver
