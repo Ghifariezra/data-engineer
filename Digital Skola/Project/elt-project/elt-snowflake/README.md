@@ -4,7 +4,6 @@
 # ERD-Datawarehouse
 ![ERD-Datawarehouse](result/erd/erd-dwh.png)
 
-# How to run it ?
 ## Pre-requisites
 1. Create `virtual environment`
 ```
@@ -43,22 +42,23 @@ before that you must open the `dbt_project` folder.
 dbt deps
 ```
 
-7. Test connection with `dbt`
+## How to run it ?
+1. Test connection with `dbt`
 ```
 dbt debug --profiles-dir <Dest path file profiles.yml> --project-dir dbt_project
 ```
 
-8. Run `dbt`
+2. Run `dbt`
 ```
 dbt run --profiles-dir <Dest path file profiles.yml> --project-dir dbt_project
 ```
 
-9. Generate `dbt` documentation
+3. Generate `dbt` documentation
 ```
 dbt docs generate --profiles-dir <Dest path file profiles.yml> --project-dir dbt_project
 ```
 
-10. Connect to local server `dbt`
+4. Connect to local server `dbt`
 ```
 dbt docs serve --profiles-dir <Dest path file profiles.yml> --project-dir dbt_project
 ```
