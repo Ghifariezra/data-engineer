@@ -18,7 +18,7 @@ employee_revenue AS (
         ROW_NUMBER() OVER (
             PARTITION BY DATE_TRUNC('month', o.OrderDate) 
             ORDER BY SUM((od.UnitPrice - (od.UnitPrice * od.Discount)) * od.Quantity) DESC
-            ) AS shorting
+        ) AS shorting
     FROM fact_order_details od
     JOIN fact_orders o ON od.OrderID = o.OrderID
     JOIN dim_employees e ON o.EmployeeID = e.EmployeeID
@@ -28,6 +28,9 @@ employee_revenue AS (
 SELECT
     month,
     employee_name,
-    gross_revenue AS datamart_monthly_best_employee
+    gross_revenue,
+    RANK() OVER (
+    ORDER BY gross_revenue DESC
+) AS overall_ranking
 FROM employee_revenue
 WHERE shorting = 1
