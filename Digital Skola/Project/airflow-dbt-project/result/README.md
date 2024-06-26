@@ -9,6 +9,8 @@
 ![DBT-Template](dag-flow/rendered_templates.png)
 ## Task Duration
 ![Task-Duration](dag-flow/task_duration.png)
+## Snowflake
+![Snowflake](dag-flow/best_employee.png)
 
 # Dashboard
 ![Dashboard](dashboard/visualisasi.png)
