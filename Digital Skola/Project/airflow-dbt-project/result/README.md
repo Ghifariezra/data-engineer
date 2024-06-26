@@ -10,7 +10,7 @@
 ## Task Duration
 ![Task-Duration](dag-flow/task_duration.png)
 ## Snowflake
-![Snowflake](result-snow/best_employee.png)
+![Snowflake](result-snow/best_employees.png)
 
 # Dashboard
 ![Dashboard](dashboard/visualisasi.png)
