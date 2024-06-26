@@ -25,12 +25,12 @@ employee_revenue AS (
     WHERE o.OrderDate IS NOT NULL
     GROUP BY CONCAT(e.FirstName, ' ', e.LastName), DATE_TRUNC('month', o.OrderDate)
 )
-SELECT
-    month,
-    employee_name,
-    gross_revenue,
-    RANK() OVER (
-    ORDER BY gross_revenue DESC
-) AS overall_ranking
-FROM employee_revenue
-WHERE shorting = 1
+    SELECT
+        month,
+        employee_name,
+        gross_revenue,
+        RANK() OVER (
+        ORDER BY gross_revenue DESC
+    ) AS overall_ranking
+    FROM employee_revenue
+    WHERE shorting = 1;

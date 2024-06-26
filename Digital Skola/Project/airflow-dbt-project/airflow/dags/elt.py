@@ -4,7 +4,12 @@ from airflow.decorators import dag, task, task_group
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.sensors.time_delta import TimeDeltaSensor
 from cosmos import DbtTaskGroup
-from dbt.dbt_project.dbt_config import profile_config, project_config, execution_config, render_config
+from dbt.dbt_project.dbt_config import (
+    profile_config, 
+    project_config, 
+    execution_config, 
+    render_config
+)
 from el_module.extractors import extract_func
 from el_module.loaders import load_func
 from el_module.filenames import names
